@@ -5,16 +5,16 @@ import { HtmlHTMLAttributes } from "react";
 
 const menu = [
   {
-    name: "index",
+    name: "./index",
   },
   {
-    name: "Sobre mim",
+    name: "./sobre_mim",
   },
   {
-    name: "Projetos",
+    name: "./projetos",
   },
   {
-    name: "Experiencias",
+    name: "./experiencias",
   },
 ];
 const socials = [
@@ -69,9 +69,9 @@ const Tag = ({ name }: { name: string }) => {
 
 const Project = () => {
   return (
-    <div className="pb-2">
+    <div className="p-4 bg-neutral-900/40">
       <div className="flex gap-2 justify-between items-end">
-        <h2 className="text-neutral-300 text-lg font-bold border-t border-t-neutral-800 pt-2 font-mono">
+        <h2 className="text-neutral-300 text-lg font-bold font-mono">
           Money Guard
         </h2>
         <Tag name="Finalizado" />
@@ -165,13 +165,13 @@ export default function Home() {
       <div className="col-span-2 py-8 border-l border-neutral-800 pl-4 h-screen sticky top-0">
         <h2 className="uppercase text-xs font-bold text-neutral-400">Skills</h2>
         <div className="flex flex-wrap gap-2 mt-4">
-          <span className="border border-neutral-600 text-neutral-300 text-sm p-1 px-2">
+          <span className=" text-neutral-300 text-sm p-1 px-2 bg-neutral-900/40">
             React
           </span>
-          <span className="border border-neutral-600 text-neutral-300 text-sm p-1 px-2">
+          <span className=" text-neutral-300 text-sm p-1 px-2 bg-neutral-900/40">
             React
           </span>
-          <span className="border border-neutral-600 text-neutral-300 text-sm p-1 px-2">
+          <span className=" text-neutral-300 text-sm p-1 px-2 bg-neutral-900/40">
             React
           </span>
         </div>
