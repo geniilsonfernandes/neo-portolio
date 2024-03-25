@@ -273,4 +273,23 @@ export type ProjectProps = {
   status: "ready" | "progress" | "paused";
 };
 
-export { jobs, projects, skills };
+const blogPosts = [
+  {
+    id: "Como testar hooks com vitest",
+    title: "Como testar hooks com vitest",
+    url: "https://dev.to/geniilsonfernandes/como-testar-hooks-com-vitest-3149",
+  },
+  {
+    id: "Trabalhando e otimizando testes com mocks de componentes",
+    title: "Trabalhando e otimizando testes com mocks de componentes",
+    url: "https://dev.to/geniilsonfernandes/trabalhando-e-otimizando-t-testes-com-mocks-de-componentes-1ckm",
+  },
+  {
+    id: "Use hook pagination",
+    title: "Use hook pagination",
+    url: "https://dev.to/geniilsonfernandes/use-hook-pagination-n5g",
+  },
+];
+
+export { blogPosts, jobs, projects, skills };
+

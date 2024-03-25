@@ -21,7 +21,7 @@ const Project = ({
   hiddenCover = false,
 }: ProjectCardProps) => {
   return (
-    <div className="p-4 bg-neutral-900/40">
+    <div className="p-4 bg-neutral-900/40 border-t">
       <div>
         {cover && !hiddenCover && (
           <Image

@@ -18,7 +18,7 @@ const Job = ({
   stacks = [],
 }: JobProps) => {
   return (
-    <div className="border-t border-neutral-800/40 p-2 ">
+    <div className="border-t bg-neutral-800/40 p-2">
       <div>
         <h3 className="text-neutral-300 text-md font-bold font-mono">
           💼 {company} <span className="text-neutral-400">{job}</span>

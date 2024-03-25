@@ -1,4 +1,5 @@
 import { skills } from "@/cms";
+import AnchorButton from "@/components/AnchorButton";
 import Section from "@/components/Section";
 import Tag from "@/components/Tag";
 import { icons } from "lucide-react";
@@ -62,6 +63,24 @@ const Page = () => {
       icon: "Terminal",
     },
   ];
+  const socials = [
+    {
+      name: "Github",
+      path: "https://github.com/geniilsonfernandes",
+    },
+    {
+      name: "Twitter",
+      path: "https://twitter.com/genilsonf_",
+    },
+    {
+      name: "LinkedIn",
+      path: "https://www.linkedin.com/in/genilson-fernandes/",
+    },
+    {
+      name: "dev.to",
+      path: "https://dev.to/geniilsonfernandes",
+    },
+  ];
 
   return (
     <div className="space-y-8 pb-8 animation-slide-up">
@@ -102,6 +121,13 @@ const Page = () => {
             profissionalmente, buscando constantemente aprimorar minhas
             habilidades técnicas e soft skills.
           </p>
+          <ul className="flex gap-2 mt-6">
+            {socials.map((item) => (
+              <li key={item.name}>
+                <AnchorButton href={item.path}>{item.name}</AnchorButton>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
 
