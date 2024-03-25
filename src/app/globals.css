@@ -19,8 +19,29 @@
 @layer base {
   body {
     @apply bg-midnight-100;
-    @apply text-white
+    @apply text-white;
   }
+
+  .animation-slide-up {
+    animation: slide-up 200ms ease-in-out forwards;
+  }
+
+  @keyframes slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(-40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  #line {
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  background-color: black;
+}
 }
 
 @layer utilities {
