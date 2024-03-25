@@ -27,12 +27,15 @@ const menu = [
 const socials = [
   {
     name: "Github",
+    path: "https://github.com/geniilsonfernandes",
   },
   {
     name: "Twitter",
+    path: "https://twitter.com/genilsonf_",
   },
   {
     name: "LinkedIn",
+    path: "https://www.linkedin.com/in/genilson-fernandes/",
   },
 ];
 
@@ -41,7 +44,7 @@ type MenuProps = {
 };
 const Menu = ({ onClose }: MenuProps) => {
   return (
-    <div className="flex flex-col justify-between w-full h-full">
+    <div className="flex flex-col gap-14  sm:justify-between w-full h-full">
       <div className="flex justify-between">
         <Link
           href="/"
@@ -71,7 +74,7 @@ const Menu = ({ onClose }: MenuProps) => {
         <ul className="flex gap-2 mt-6">
           {socials.map((item) => (
             <li key={item.name}>
-              <AnchorButton>{item.name}</AnchorButton>
+              <AnchorButton href={item.path}>{item.name}</AnchorButton>
             </li>
           ))}
         </ul>

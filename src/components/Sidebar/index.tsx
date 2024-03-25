@@ -2,12 +2,21 @@
 
 import { MenuIcon } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Logo from "../Logo";
 import Menu from "../Menu";
 
 const Sidebar = () => {
   const [openMenu, setOpenMenu] = useState(false);
+
+  useEffect(() => {
+    if (openMenu) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [openMenu]);
+
   return (
     <div className="relative h-full ">
       <div className="sm:hidden flex justify-between p-4">
