@@ -40,7 +40,7 @@ export default function Home() {
           Ver todos os posts
         </AnchorButton>
       </Section>
-      <Section title="Experiencias">
+      <Section title="Experiências">
         {jobs &&
           jobs.slice(0, 3).map((job, i) => <Job key={i} {...job} small />)}
         <Button onClick={() => router.push("/experience")}>
