@@ -1,3 +1,4 @@
+import { jobs } from "@/cms";
 import Job from "@/components/Job";
 
 const Page = () => {
@@ -7,10 +8,7 @@ const Page = () => {
         Experiências
       </h2>
 
-      <Job />
-      <Job />
-      <Job />
-      <Job />
+      {jobs && jobs.map((job, i) => <Job key={i} {...job} />)}
     </div>
   );
 };

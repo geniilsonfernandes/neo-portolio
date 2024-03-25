@@ -1,6 +1,8 @@
 "use client";
+import { jobs, projects } from "@/cms";
 import About from "@/components/About";
 import Button from "@/components/Button";
+import Job from "@/components/Job";
 import Project from "@/components/Project";
 import Section from "@/components/Section";
 import { useRouter } from "next/navigation";
@@ -11,9 +13,15 @@ export default function Home() {
     <>
       <About />
       <Section title="Projetos">
-        <Project path="1" />
-        <Project path="2" />
-        <Project path="3" />
+        {projects.slice(0, 3).map((project, i) => (
+          <Project
+            key={project.id}
+            path={project.id}
+            {...project}
+            hiddenCover
+          />
+        ))}
+
         <Button onClick={() => router.push("/projects")}>
           Ver todos projetos
         </Button>
@@ -23,7 +31,9 @@ export default function Home() {
         <Button>Ver todos</Button>
       </Section>
       <Section title="Experiencias">
-        <Button>Ver todos</Button>
+        {jobs &&
+          jobs.slice(0, 3).map((job, i) => <Job key={i} {...job} small />)}
+        <Button onClick={() => router.push("/experience")}>Ver todas</Button>
       </Section>
     </>
   );

@@ -73,7 +73,7 @@ const Page = () => {
         <div className="col-span-12 sm:col-span-3 space-y-4">
           <Image
             src="/images/1710776694538-01.jpeg"
-            alt=""
+            alt="genilson-fernandes"
             width={300}
             height={300}
             className="w-full h-80 object-cover bg-neutral-900/80 filter grayscale"
@@ -105,7 +105,7 @@ const Page = () => {
         </div>
       </div>
 
-      <Section title="Habilidades">
+      <Section title="Interesses">
         <div className="grid sm:grid-cols-3 grid-cols-1 gap-4">
           {stacks.map((stack) => (
             <Stack key={stack.name} {...stack} />
@@ -118,6 +118,26 @@ const Page = () => {
           {skills.map((skill) => (
             <Tag key={skill} name={skill} />
           ))}
+        </div>
+      </Section>
+      <Section title="Escolaridade">
+        <div>
+          <h3 className="text-neutral-300 text-md font-bold font-mono">
+            Anhanguera - Análise E Desenvolvimento De Sistemas
+          </h3>
+          <span className="text-neutral-400 text-sm mt-4">
+            Sistemas jun de 2022 - jun de 2024
+          </span>
+          <p className="text-neutral-400 text-sm mt-4"></p>
+          <p className="text-neutral-400 text-sm mt-4">
+            Desenvolvimento de software · Boas práticas de programação · Design
+            de interface do usuário · Controle de versão · Banco de dados ·
+            Ciência da computação · C# · SQL · Requisitos de negócio ·
+            Arquitetura de software · Web Design Responsivo · Programação
+            orientada a objetos (POO) · Jest · Testes automatizados de software
+            · Desenvolvimento de tecnologia · UML (Linguagem de modelagem
+            unificada)
+          </p>
         </div>
       </Section>
     </div>

@@ -1,11 +1,27 @@
 import { cn } from "@/utils";
-import { HtmlHTMLAttributes } from "react";
+import { ArrowUpRight } from "lucide-react";
 
 type AnchorButtonProps = {
   size?: "sm" | "lg";
-} & HtmlHTMLAttributes<HTMLAnchorElement>;
+  variant?: "text" | "button";
+} & React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
 const AnchorButton = (props: AnchorButtonProps) => {
+  const { variant = "text" } = props;
+  if (variant === "button") {
+    return (
+      <a
+        className={cn(
+          props.className,
+          "border-b border-b-neutral-800 text-neutral-300 hover:text-neutral-100 uppercase text-xs font-bold hover:border-b-neutral-200 px-4 py-2 flex justify-between w-full transition-all"
+        )}
+        {...props}
+      >
+        {props.children} <ArrowUpRight size={18} strokeWidth={2} />
+      </a>
+    );
+  }
+
   return (
     <a
       className={cn(

@@ -1,3 +1,4 @@
+import { projects } from "@/cms";
 import Project from "@/components/Project";
 
 type StackStatusProps = {
@@ -34,13 +35,14 @@ const Page = () => {
       </div>
 
       <div className="space-y-4">
-        <Project path="1" />
-        <Project path="1" />
-        <Project path="1" />
-        <Project path="1" />
-        <Project path="1" />
-        <Project path="1" />
-        <Project path="1" />
+        {projects.map((project, i) => (
+          <Project
+            key={project.id}
+            path={project.id}
+            {...project}
+            hiddenCover
+          />
+        ))}
       </div>
     </div>
   );
