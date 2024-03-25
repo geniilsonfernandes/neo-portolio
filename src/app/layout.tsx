@@ -7,7 +7,15 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Ola! Sou Genilson Fernandes",
-  description: "Este é meu portifolio",
+  description:
+    "Software Enginner Front-end | React js | React Native | NextJs | TypeScript | GraphQL | Nest | NodeJs",
+  authors: [{ name: "Genilson Fernandes" }],
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon-16x16.png",
+    apple: "/apple-touch-icon.png",
+  },
+  category: "Portfolio",
 };
 
 export default function RootLayout({
