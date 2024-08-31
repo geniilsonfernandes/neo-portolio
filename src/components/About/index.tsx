@@ -3,7 +3,7 @@ import Button from "../Button";
 
 const About = () => {
   return (
-    <div className="space-y-4  p-4 bg-neutral-900/40">
+    <div className="space-y-4   ">
       <h1 className="text-2xl font-bold text-neutral-300 ">
         👋 Olá! Sou Genilson Fernandes
       </h1>

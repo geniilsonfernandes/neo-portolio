@@ -13,6 +13,12 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      fontFamily: {
+        inter: ["Inter", "sans-serif"],
+        yeseva: ["Yeseva One", "cursive"],
+        inria: ["Inria Sans", "sans-serif"],
+        purple: ["Purple Purse", "cursive"],
+      },
       container: {
         center: true,
       },

@@ -22,8 +22,8 @@ const Project = ({
 }: ProjectCardProps) => {
   return (
     <div
-      className="p-4 bg-neutral-900/40 border-t
-      cursor-pointer hover:bg-neutral-800/40 transition-all
+      className="p-4 border-t
+      cursor-pointer 
     "
     >
       <div>

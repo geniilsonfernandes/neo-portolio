@@ -14,7 +14,7 @@ type StackProps = {
 const Stack = ({ name, description, icon }: StackProps) => {
   const LucideIcon = icons[icon as keyof typeof icons];
   return (
-    <div className=" bg-neutral-900/80 p-4">
+    <div className="p-4">
       <LucideIcon size={16} className="text-neutral-300" />
       <h3 className="text-neutral-300 text-md font-bold font-mono flex gap-2 mt-2">
         {name}

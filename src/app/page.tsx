@@ -1,4 +1,7 @@
 "use client";
+
+import { useScroll, useSpring, useTransform } from "framer-motion";
+
 import { blogPosts, jobs, projects } from "@/cms";
 import About from "@/components/About";
 import AnchorButton from "@/components/AnchorButton";
@@ -8,11 +11,33 @@ import Job from "@/components/Job";
 import Project from "@/components/Project";
 import Section from "@/components/Section";
 import { useRouter } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
+import { Header } from "./Header";
 
 export default function Home() {
+  const [containerSize, setContainerSize] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null!);
+  const { scrollY } = useScroll();
   const router = useRouter();
+
+  const transform = useTransform(
+    scrollY,
+    [0, containerSize],
+    [0, -containerSize]
+  );
+  const spring = useSpring(transform, {
+    damping: 10,
+    restDelta: 0.001,
+  });
+  useEffect(() => {
+    if (containerRef.current) {
+      setContainerSize(containerRef.current.offsetHeight);
+    }
+  }, []);
+
   return (
     <>
+      <Header />
       <About />
       <Section title="Projetos">
         {projects.slice(0, 3).map((project, i) => (
