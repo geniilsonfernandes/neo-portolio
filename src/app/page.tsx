@@ -40,14 +40,17 @@ export default function Home() {
       <Header />
       <About />
       <Section title="Projetos">
-        {projects.slice(0, 3).map((project, i) => (
-          <Project
-            key={project.id}
-            path={project.id}
-            {...project}
-            hiddenCover
-          />
-        ))}
+        <div className="space-y-12">
+          {projects.slice(0, 3).map((project, i) => (
+            <Project
+              key={project.id}
+              path={project.id}
+              onClick={() => router.push(`project/${project.id}`)}
+              {...project}
+              hiddenCover
+            />
+          ))}
+        </div>
 
         <Button onClick={() => router.push("/projects")}>
           Ver todos projetos

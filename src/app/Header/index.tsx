@@ -1,4 +1,5 @@
 import useMouseNear from "@/hook/useMouseNear";
+import useMouse from "@react-hook/mouse-position";
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
@@ -19,6 +20,8 @@ const Circle = () => {
 };
 
 export const Header = () => {
+  const elementRef = useRef<HTMLDivElement>(null);
+  const { x, y } = useMouse(elementRef);
   const [activeSub, setActiveSub] = useState("front-end");
 
   useEffect(() => {
@@ -34,7 +37,7 @@ export const Header = () => {
   }, []);
 
   return (
-    <div className="w-full h-screen pb-40 pt-16  flex flex-col justify-between">
+    <div className="w-full h-screen pb-40 pt-16 relative flex flex-col justify-between">
       <div className="grid grid-cols-dots">
         {Array.from({ length: 240 }).map((_, i) => (
           <div
