@@ -12,7 +12,7 @@ const menu = [
     path: "/",
   },
   {
-    name: "./sobre_mim",
+    name: "./sobre",
     path: "/about",
   },
   {
@@ -20,7 +20,7 @@ const menu = [
     path: "/projects",
   },
   {
-    name: "./experiencias",
+    name: "./experiências",
     path: "/experience",
   },
 ];

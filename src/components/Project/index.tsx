@@ -21,7 +21,11 @@ const Project = ({
   hiddenCover = false,
 }: ProjectCardProps) => {
   return (
-    <div className="p-4 bg-neutral-900/40 border-t">
+    <div
+      className="p-4 bg-neutral-900/40 border-t
+      cursor-pointer hover:bg-neutral-800/40 transition-all
+    "
+    >
       <div>
         {cover && !hiddenCover && (
           <Image
@@ -36,7 +40,7 @@ const Project = ({
       <div className="flex gap-2 justify-between items-end">
         <Link
           href={`project/${path}`}
-          className="text-neutral-300 text-lg font-bold font-mono"
+          className="text-neutral-300 text-lg font-bold "
         >
           {title}
         </Link>
@@ -45,14 +49,14 @@ const Project = ({
           color={status === "ready" ? "green" : "yellow"}
         />
       </div>
-      <p className="text-neutral-400 text-sm leading-5 font-mono mt-2">
+      <p className="text-neutral-400  text-sm leading-5  my-6">
         {description[0]}
       </p>
       <div className="flex gap-4 items-end mt-4">
         {github && <AnchorButton href={github}>Github</AnchorButton>}
         {demo && <AnchorButton href={demo}>Demo</AnchorButton>}
         <Link href={`project/${path}`} passHref>
-          <button className="border border-neutral-600 text-neutral-300 h-7  text-sm hover:text-neutral-100 px-4 py-2 flex items-center gap-2 font-mono hover:bg-neutral-900">
+          <button className="border border-neutral-600 text-neutral-300 h-7 text-sm hover:text-neutral-100 px-4 py-2 flex items-center gap-2  hover:bg-neutral-900">
             ./documentação <Paperclip size={16} strokeWidth={2} />
           </button>
         </Link>
