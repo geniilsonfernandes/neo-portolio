@@ -3,11 +3,11 @@ import Button from "../Button";
 
 const About = () => {
   return (
-    <div className="space-y-4   ">
-      <h1 className="text-2xl font-bold text-neutral-300 yeseva-one-regular ">
+    <div className="space-y-4">
+      <h1 className="text-2xl font-bold yeseva-one-regular ">
         👋 Olá! Sou Genilson Fernandes
       </h1>
-      <p className="text-neutral-400 ">
+      <p className="">
         Desenvolvedor Frontend com uma formação em design. Minha jornada
         profissional é criar experiências digitais significativas e funcionais.
       </p>

@@ -1,7 +1,9 @@
-import { skills } from "@/cms";
+import { jobs, skills } from "@/cms";
 import AnchorButton from "@/components/AnchorButton";
+import Job from "@/components/Job";
 import Section from "@/components/Section";
 import Tag from "@/components/Tag";
+import { IconChevronLeft } from "@tabler/icons-react";
 import { icons } from "lucide-react";
 
 import Image from "next/image";
@@ -14,12 +16,10 @@ type StackProps = {
 const Stack = ({ name, description, icon }: StackProps) => {
   const LucideIcon = icons[icon as keyof typeof icons];
   return (
-    <div className="p-4">
-      <LucideIcon size={16} className="text-neutral-300" />
-      <h3 className="text-neutral-300 text-md font-bold font-mono flex gap-2 mt-2">
-        {name}
-      </h3>
-      <p className="text-neutral-400 text-sm mt-4">{description}</p>
+    <div className="p-4 bg-slate-100">
+      <LucideIcon size={16} className="" />
+      <h3 className=" text-md font-bold font-mono flex gap-2 mt-2">{name}</h3>
+      <p className="text-sm mt-4">{description}</p>
     </div>
   );
 };
@@ -83,38 +83,24 @@ const Page = () => {
   ];
 
   return (
-    <div className="space-y-8 pb-8 animation-slide-up">
-      <h2 className="text-neutral-300 text-2xl font-bold font-mono">
-        Sobre mim
-      </h2>
-
-      <div className="bg-neutral-900/40 grid grid-cols-12 gap-4">
-        <div className="col-span-12 sm:col-span-3 space-y-4">
-          <Image
-            src="/images/1710776694538-01.jpeg"
-            alt="genilson-fernandes"
-            width={300}
-            height={300}
-            className="w-full h-80 object-cover bg-neutral-900/80 filter grayscale"
-          />
-        </div>
-        <div className="space-y-4 p-4 col-span-12 sm:col-span-9">
-          <h1 className="text-2xl font-bold text-neutral-300 font-mono">
-            👋 Olá! Sou Genilson Fernandes
-          </h1>
-          <p className="text-neutral-400 font-mono">
+    <div className="space-y-8 py-8">
+      <h2 className="text-2xl">Sobre mim</h2>
+      <div className="gap-4">
+        <div className="space-y-4">
+          <h1 className="text-2xl">👋 Olá! Sou Genilson Fernandes</h1>
+          <p className="">
             Desenvolvedor Frontend com uma formação em design. Minha jornada
             profissional é criar experiências digitais significativas e
             funcionais.
           </p>
-          <p className="text-neutral-400 font-mono">
+          <p className="">
             💼 Com experiência valiosa na Beuni Tech e na Teamsoft, contribuí
             para o desenvolvimento de soluções robustas e inovadoras. Meu
             compromisso em resolver problemas e implementar novas
             funcionalidades tem sido constante em cada projeto em que estive
             envolvido.
           </p>
-          <p className="text-neutral-400 font-mono">
+          <p className="">
             🚀 Ao longo dos anos, aprimorei minha compreensão de processos e
             resolução de problemas complexos, sempre buscando entregar soluções
             de alta qualidade. Estou empenhado em aprender e crescer
@@ -131,6 +117,14 @@ const Page = () => {
         </div>
       </div>
 
+      <Section title="Stacks">
+        <div className="flex gap-2 flex-wrap">
+          {skills.map((skill) => (
+            <Tag key={skill} name={skill} />
+          ))}
+        </div>
+      </Section>
+
       <Section title="Interesses">
         <div className="grid sm:grid-cols-3 grid-cols-1 gap-4">
           {stacks.map((stack) => (
@@ -139,23 +133,22 @@ const Page = () => {
         </div>
       </Section>
 
-      <Section title="Stacks">
+      <Section title="Experiência">
         <div className="flex gap-2 flex-wrap">
-          {skills.map((skill) => (
-            <Tag key={skill} name={skill} />
-          ))}
+          {jobs && jobs.map((job, i) => <Job key={i} {...job} />)}
         </div>
       </Section>
+
       <Section title="Escolaridade">
         <div>
-          <h3 className="text-neutral-300 text-md font-bold font-mono">
+          <h3 className="text-neutral-300 text-md font-bold ">
             Anhanguera - Análise E Desenvolvimento De Sistemas
           </h3>
-          <span className="text-neutral-400 text-sm mt-4">
+          <span className="text-sm mt-4">
             Sistemas jun de 2022 - jun de 2024
           </span>
-          <p className="text-neutral-400 text-sm mt-4"></p>
-          <p className="text-neutral-400 text-sm mt-4">
+          <p className="text-sm mt-4"></p>
+          <p className="text-sm mt-4">
             Desenvolvimento de software · Boas práticas de programação · Design
             de interface do usuário · Controle de versão · Banco de dados ·
             Ciência da computação · C# · SQL · Requisitos de negócio ·

@@ -1,83 +1,85 @@
-import useMouseNear from "@/hook/useMouseNear";
-import useMouse from "@react-hook/mouse-position";
-import { motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
-
-const Circle = () => {
-  const circleRef = useRef(null);
-  const isNear = useMouseNear(circleRef, 100);
-
-  return (
-    <div
-      className="rounded-full bg-neutral-300 transition-all duration-1000"
-      style={{
-        width: isNear ? "8px" : "4px",
-        height: isNear ? "8px" : "4px",
-      }}
-      ref={circleRef}
-    />
-  );
-};
+import Logo from "@/components/Logo";
+import {
+  IconBrandGithub,
+  IconBrandInstagram,
+  IconBrandTwitter,
+  IconBrandYoutube,
+  IconCode,
+} from "@tabler/icons-react";
+import Image from "next/image";
+import Link from "next/link";
 
 export const Header = () => {
-  const elementRef = useRef<HTMLDivElement>(null);
-  const { x, y } = useMouse(elementRef);
-  const [activeSub, setActiveSub] = useState("front-end");
-
-  useEffect(() => {
-    const subs = ["front-end", "back-end", "mobile", "UX/UI"];
-
-    const interval = setInterval(() => {
-      // Gera um novo número aleatório dentro do intervalo a cada execução
-      const radom = Math.floor(Math.random() * subs.length);
-      setActiveSub(subs[radom]);
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, []);
-
   return (
-    <div className="w-full h-screen pb-40 pt-16 relative flex flex-col justify-between">
-      <div className="grid grid-cols-dots">
-        {Array.from({ length: 240 }).map((_, i) => (
-          <div
-            key={i}
-            style={{
-              width: "20px",
-              height: "20px",
-              display: "inline-flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-            title={i.toString()}
-          >
-            <Circle key={i} />
+    <div className="flex flex-col ">
+      <div className="h-full flex">
+        <div
+          className="flex flex-1 flex-col justify-between py-8"
+          aria-label="header info section"
+        >
+          <div className="py-28">
+            <div className="flex w-[74px] h-[74px] rounded-full gap-4 justify-center bg-white shadow-sm mb-4 items-center">
+              <Image
+                src="/cover.png"
+                alt="image"
+                className="rounded-full object-cover"
+                width={64}
+                height={64}
+              />
+            </div>
+            <h1 className="text-4xl font-bold leading-9">
+              My name is Genilson, <br /> and I’m a Front-end
+            </h1>
+            <p className="text-lg font-normal leading-6 mt-8 max-w-[600px]">
+              Frontend Developer with a design background, focused on creating
+              functional digital experiences and solving
+              <i>
+                <b> complex </b>
+              </i>
+              problems with high-quality solutions.<b> How can I help you? </b>
+            </p>
+            <div className="flex gap-4 mt-8">
+              <a
+                href="https://github.com/GenilsonFernandes"
+                target="_blank"
+                title="Github"
+              >
+                <IconBrandInstagram />
+              </a>
+              <a
+                href="https://github.com/GenilsonFernandes"
+                target="_blank"
+                title="Github"
+              >
+                <IconBrandGithub />
+              </a>
+
+              <a
+                href="https://github.com/GenilsonFernandes"
+                target="_blank"
+                title="Github"
+              >
+                <IconBrandTwitter />
+              </a>
+
+              <a
+                href="https://github.com/GenilsonFernandes"
+                target="_blank"
+                title="Github"
+              >
+                <IconBrandYoutube />
+              </a>
+
+              <a
+                href="https://github.com/GenilsonFernandes"
+                target="_blank"
+                title="Github"
+              >
+                <IconCode />
+              </a>
+            </div>
           </div>
-        ))}
-      </div>
-      <div className="space-y-4">
-        <motion.h1
-          initial={{ opacity: 0, y: 10 }}
-          animate={{
-            opacity: 1,
-            y: 0,
-            transition: { duration: 0.1, ease: "easeInOut" },
-          }}
-          className="text-neutral-300 text-6xl font-bold flex yeseva-one-regular"
-        >
-          Dev.
-        </motion.h1>
-        <motion.h1
-          initial={{ opacity: 0, y: 10 }}
-          animate={{
-            opacity: 1,
-            y: 0,
-            transition: { duration: 0.1, ease: "easeInOut", delay: 0.1 },
-          }}
-          className="text-neutral-300 text-3xl flex uppercase font-thin "
-        >
-          {activeSub}
-        </motion.h1>
+        </div>
       </div>
     </div>
   );

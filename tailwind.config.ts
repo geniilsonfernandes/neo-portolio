@@ -20,6 +20,13 @@ const config: Config = {
         purple: ["Purple Purse", "cursive"],
       },
       container: {
+        screens: {
+          sm: "640px",
+          md: "768px",
+          lg: "904px",
+          xl: "904px",
+        },
+
         center: true,
       },
       colors: {

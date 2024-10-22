@@ -31,6 +31,16 @@ const skills = [
   "Vitest",
 ];
 
+
+
+const sections = {
+  projects: {
+    title: "All projects",
+    description:
+      "Here are some of the projects I've worked on, focusing on developing efficient and innovative software solutions to tackle complex frontend challenges.",
+  },
+};
+
 const jobs = [
   {
     company: "Spotx",
@@ -291,5 +301,5 @@ const blogPosts = [
   },
 ];
 
-export { blogPosts, jobs, projects, skills };
+export { blogPosts, jobs, projects, skills, sections };
 

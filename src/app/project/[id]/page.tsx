@@ -20,7 +20,7 @@ export default async function Page({ params }: { params: { id: string } }) {
   const data = await getData(params.id);
 
   return (
-    <div className="container space-y-8  animation-slide-up">
+    <div className="container space-y-8 animation-slide-up">
       <div>
         <img
           src={data.cover}
