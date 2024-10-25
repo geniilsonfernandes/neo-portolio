@@ -1,0 +1,81 @@
+{
+    "header": {
+        "title": "👋 My name is Ge and I’m a Front-end",
+        "description": "Frontend Developer with a design background, focused on creating functional digital experiences and solving complex problems with high-quality solutions. <i><b> How can I help you? </b></i>"
+    },
+    "Navigation": {
+        "home": "Home",
+        "about": "About me",
+        "projects": "Projects"
+    },
+    "LocaleSwitcher": {
+        "pt": "🇧🇷 Portuguese",
+        "en": "🇺🇸 English",
+        "label": "Language"
+    },
+    "Footer": {
+        "title": "Always exploring new ways to blend design and technology. Let's build something great together.",
+        "email": "geniilsonfernandes@gmail.com",
+        "phone": "+ 55 22 99602 1627"
+    },
+    "About": {
+        "title": "👋 Hello! I'm Genilson Fernandes",
+        "description": "<p>Frontend Developer with a background in design. My professional journey is about creating meaningful and functional digital experiences.</p> <p>💼 With valuable experience at Beuni Tech and Teamsoft, I have contributed to the development of robust and innovative solutions. My commitment to problem-solving and implementing new features has been constant in every project I've been involved in.</p><p> 🚀 Over the years, I have honed my understanding of processes and complex problem-solving, always striving to deliver high-quality solutions. I am committed to learning and growing professionally, constantly seeking to improve my technical skills and soft skills.</p>"
+    },
+    "Stack": {
+        "front-end": {
+            "title": "Front-end",
+            "description": "Development of web interfaces and applications with a focus on user experience.",
+            "icon": "Terminal"
+        },
+        "back-end": {
+            "title": "Back-end",
+            "description": "Development of APIs and server logic to support web applications and services.",
+            "icon": "Terminal"
+        },
+        "mobile": {
+            "title": "Mobile",
+            "description": "Development of mobile applications for iOS and Android platforms using Expo.",
+            "icon": "Terminal"
+        },
+        "automated-testing": {
+            "title": "Automated Testing",
+            "description": "Implementation of automated tests to ensure the quality and robustness of APIs and applications.",
+            "icon": "Terminal"
+        },
+        "clean-code": {
+            "title": "Clean Code",
+            "description": "Writing clean and readable code, following best practices and development standards.",
+            "icon": "Terminal"
+        },
+        "ux-ui": {
+            "title": "UX/UI",
+            "description": "Design and implementation of intuitive and attractive user interfaces to provide an exceptional user experience.",
+            "icon": "Terminal"
+        }
+    },
+    "Projects": {
+        "title": "All projects",
+        "description": "Here are some of the projects I've worked on, focusing on developing efficient and innovative software solutions to tackle complex frontend challenges.",
+        "money_guard": {
+            "title": "Money Guard",
+            "description": "<p>Money Guard is a financial control app focused on monthly management, setting goals, and having the user's salary as the central point With it, we can track income more efficiently, set objectives, and save money.</p> <p>This app was born out of the need to replace Google Sheets with a more complete system. My wife and I faced limitations using Google Sheets to manage our finances, which motivated us to create Money Guard. </p>"
+        },
+        "cover": "/images/money_guard_cover.png",
+        "youtube": "https://www.youtube.com/watch?v=QpV5Y5kXbq4",
+        "github": "https://github.com/geniilsonfernandes/moneyguard",
+        "status": "ready",
+        "technologies": [
+            "Next.js",
+            "React",
+            "Tailwind",
+            "Typescript",
+            "Prisma",
+            "Docker",
+            "Redux",
+            "Jest",
+            "Vercel",
+            "Figma"
+        ]
+    }
+}

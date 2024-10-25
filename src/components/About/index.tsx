@@ -1,25 +1,13 @@
-import Link from "next/link";
-import Button from "../Button";
+import { useTranslations } from "next-intl";
 
 const About = () => {
+  const t = useTranslations("About");
   return (
     <div className="space-y-4">
-      <h1 className="text-2xl font-bold yeseva-one-regular ">
-        👋 Olá! Sou Genilson Fernandes
-      </h1>
-      <p className="">
-        Desenvolvedor Frontend com uma formação em design. Minha jornada
-        profissional é criar experiências digitais significativas e funcionais.
-      </p>
-      <p className="text-neutral-400  pb-8">
-        💼 Com experiência valiosa na Beuni Tech e na Teamsoft, contribuí para o
-        desenvolvimento de soluções robustas e inovadoras. Meu compromisso em
-        resolver problemas e implementar novas funcionalidades tem sido
-        constante em cada projeto em que estive envolvido.
-      </p>
-      <Link href="/about" passHref>
-        <Button>Saber Mais</Button>
-      </Link>
+      <h1 className="text-2xl font-bold">{t("title")}</h1>
+      {t.rich("description", {
+        p: (chunks) => <p>{chunks}</p>,
+      })}
     </div>
   );
 };

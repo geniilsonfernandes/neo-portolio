@@ -1,3 +1,4 @@
+import { useLocale } from "next-intl";
 import Tag from "../Tag";
 
 export type JobProps = {
@@ -5,7 +6,10 @@ export type JobProps = {
   company?: string;
   period?: string;
   job?: string;
-  description?: string[];
+  description?: {
+    pt: string[];
+    en: string[];
+  };
   stacks?: string[];
 };
 
@@ -17,6 +21,7 @@ const Job = ({
   period,
   stacks = [],
 }: JobProps) => {
+  const locale = useLocale() as "en" | "pt";
   return (
     <div className="border-b p-2 py-4">
       <div>
@@ -27,11 +32,12 @@ const Job = ({
       </div>
       {small ? null : (
         <>
-          {description?.map((desc, i) => (
-            <p className="text-sm leading-5 mt-2" key={i}>
-              {desc}
-            </p>
-          ))}
+          {description &&
+            description[locale].map((desc, i) => (
+              <p className="text-sm leading-5 mt-2" key={i}>
+                {desc}
+              </p>
+            ))}
 
           <div className="flex gap-2 flex-wrap mt-8">
             {stacks.map((stack) => (

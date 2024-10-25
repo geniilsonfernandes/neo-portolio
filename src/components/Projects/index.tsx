@@ -2,16 +2,18 @@
 
 import React, { useState } from "react";
 import { FloatingIndicator } from "../FloatingIndicator";
-import { projects, sections } from "@/cms";
+import { projects } from "@/cms";
 import { cn } from "@/utils";
 import Link from "next/link";
 import Project from "../Project";
+import { useTranslations } from "next-intl";
 
 type ProjectProps = {
   showStatus?: boolean;
 };
 
 export const Projects = ({ showStatus = false }: ProjectProps) => {
+  const t = useTranslations("Projects");
   const [rootRef, setRootRef] = useState<HTMLDivElement | null>(null);
   const [controlsRefs, setControlsRefs] = useState<
     Record<string, HTMLDivElement | null>
@@ -45,11 +47,9 @@ export const Projects = ({ showStatus = false }: ProjectProps) => {
 
   return (
     <section id="projects">
-      <h1 className="text-4xl font-bold text-center">
-        {sections.projects.title}
-      </h1>
+      <h1 className="text-4xl font-bold text-center">{t("title")}</h1>
       <p className="text-lg font-normal text-center leading-6 mt-8 ">
-        {sections.projects.description}
+        {t("description")}
       </p>
       {!showStatus ? null : (
         <div className="flex justify-between gap-2 my-8 ">

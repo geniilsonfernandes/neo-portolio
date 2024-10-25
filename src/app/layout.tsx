@@ -1,12 +1,13 @@
-import Sidebar from "@/components/Sidebar";
-import type { Metadata } from "next";
-import { Inter, Purple_Purse, Inria_Sans } from "next/font/google";
-import "./globals.css";
 import Logo from "@/components/Logo";
-import Link from "next/link";
 import Menu from "@/components/Menu";
-import { sections } from "@/cms";
+import type { Metadata } from "next";
+import { getLocale, getMessages } from "next-intl/server";
+import { Inria_Sans } from "next/font/google";
+import Link from "next/link";
+import "./globals.css";
+
 import { Footer } from "@/components/Footer";
+import { NextIntlClientProvider } from "next-intl";
 
 const inria = Inria_Sans({
   subsets: ["latin"],
@@ -26,23 +27,23 @@ export const metadata: Metadata = {
   category: "Portfolio",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getLocale();
+  const messages = await getMessages();
+
   return (
-    <html lang="en">
+    <html lang={locale}>
       <body className={`${inria.className}`}>
-        <main className="container">
-          <div className="flex justify-center items-center py-8">
-            <Link href="/">
-              <Logo />
-            </Link>
+        <NextIntlClientProvider messages={messages}>
+          <main className="container">
             <Menu />
-          </div>
-          {children}
-        </main>
+            {children}
+          </main>
+        </NextIntlClientProvider>
         <Footer />
       </body>
     </html>

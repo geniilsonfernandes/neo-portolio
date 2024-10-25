@@ -1,5 +1,3 @@
-import { sections } from "@/cms";
-import Logo from "@/components/Logo";
 import {
   IconBrandGithub,
   IconBrandInstagram,
@@ -7,10 +5,11 @@ import {
   IconBrandThreads,
   IconCode,
 } from "@tabler/icons-react";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
-import Link from "next/link";
 
 export const Header = () => {
+  const t = useTranslations("header");
   return (
     <div className="flex flex-col  h-screen max-h-[80vh]">
       <div
@@ -26,11 +25,12 @@ export const Header = () => {
             height={64}
           />
         </div>
-        <h1 className="text-4xl font-bold leading-9">
-          {sections.header.title}
-        </h1>
+        <h1 className="text-4xl font-bold leading-9">{t("title")}</h1>
         <p className="text-lg font-normal leading-6 mt-8 ">
-          {sections.header.description}
+          {t.rich("description", {
+            i: (chunks) => <i>{chunks}</i>,
+            b: (chunks) => <b>{chunks}</b>,
+          })}
         </p>
         <div className="flex gap-4 mt-8">
           <a

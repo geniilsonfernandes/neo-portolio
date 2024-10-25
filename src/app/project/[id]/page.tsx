@@ -1,7 +1,8 @@
 import { projects } from "@/cms";
 import AnchorButton from "@/components/AnchorButton";
-import Section from "@/components/Section";
+import { ProjectDescription } from "@/components/Project";
 import Tag from "@/components/Tag";
+import { useLocale } from "next-intl";
 import Image from "next/image";
 
 async function getData(id: string) {
@@ -27,7 +28,7 @@ export default async function Page({ params }: { params: { id: string } }) {
       <div className="flex gap-4 ">
         {data.github && (
           <AnchorButton href={data.github} target="_blank" variant="button">
-            Repository
+            Repo
           </AnchorButton>
         )}
         {data.demo && (
@@ -44,11 +45,7 @@ export default async function Page({ params }: { params: { id: string } }) {
             color={data.status === "ready" ? "green" : "yellow"}
           />
         </div>
-        {data.description.map((desc, i) => (
-          <p key={i} className=" text-sm leading-5 font-mono mt-4">
-            {desc}
-          </p>
-        ))}
+        <ProjectDescription description={data.description} />
         <div className="flex gap-2 flex-wrap mt-8">
           {data.technologies.map((tech, i) => (
             <Tag key={i} name={tech} />
