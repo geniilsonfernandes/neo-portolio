@@ -2,7 +2,6 @@ import { projects } from "@/cms";
 import AnchorButton from "@/components/AnchorButton";
 import { ProjectDescription } from "@/components/Project";
 import Tag from "@/components/Tag";
-import { useLocale } from "next-intl";
 import Image from "next/image";
 
 async function getData(id: string) {
