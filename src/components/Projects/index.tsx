@@ -45,8 +45,10 @@ export const Projects = ({ showStatus = false }: ProjectProps) => {
 
   return (
     <section id="projects">
-      <h1 className="text-4xl font-bold">{sections.projects.title}</h1>
-      <p className="text-lg font-normal leading-6 mt-8 max-w-[600px]">
+      <h1 className="text-4xl font-bold text-center">
+        {sections.projects.title}
+      </h1>
+      <p className="text-lg font-normal text-center leading-6 mt-8 ">
         {sections.projects.description}
       </p>
       {!showStatus ? null : (

@@ -1,4 +1,4 @@
-import { jobs, skills } from "@/cms";
+import { jobs, sections, skills } from "@/cms";
 import AnchorButton from "@/components/AnchorButton";
 import Job from "@/components/Job";
 import Section from "@/components/Section";
@@ -29,40 +29,41 @@ const Page = () => {
     {
       name: "Front-end",
       description:
-        "Desenvolvimento de interfaces web e aplicativos com foco na experiência do usuário.",
+        "Development of web interfaces and applications with a focus on user experience.",
       icon: "Terminal",
     },
     {
       name: "Back-end",
       description:
-        "Desenvolvimento de APIs e lógica de servidor para suportar aplicativos web e serviços.",
+        "Development of APIs and server logic to support web applications and services.",
       icon: "Terminal",
     },
     {
       name: "Mobile",
       description:
-        "Desenvolvimento de aplicativos móveis para plataformas iOS e Android com expo.",
+        "Development of mobile applications for iOS and Android platforms using Expo.",
       icon: "Terminal",
     },
     {
-      name: "Testes Automatizados",
+      name: "Automated Testing",
       description:
-        "Implementação de testes automatizados para garantir a qualidade e robustez de APIs e aplicativos.",
+        "Implementation of automated tests to ensure the quality and robustness of APIs and applications.",
       icon: "Terminal",
     },
     {
       name: "Clean Code",
       description:
-        "Escrever código limpo e legível, seguindo melhores práticas e padrões de desenvolvimento.",
+        "Writing clean and readable code, following best practices and development standards.",
       icon: "Terminal",
     },
     {
       name: "UX/UI",
       description:
-        "Design e implementação de interfaces de usuário intuitivas e atraentes para proporcionar uma experiência de usuário excepcional.",
+        "Design and implementation of intuitive and attractive user interfaces to provide an exceptional user experience.",
       icon: "Terminal",
     },
   ];
+
   const socials = [
     {
       name: "Github",
@@ -84,29 +85,13 @@ const Page = () => {
 
   return (
     <div className="space-y-8 py-8">
-      <h2 className="text-2xl">Sobre mim</h2>
+      <h2 className="text-2xl">About me</h2>
       <div className="gap-4">
         <div className="space-y-4">
-          <h1 className="text-2xl">👋 Olá! Sou Genilson Fernandes</h1>
-          <p className="">
-            Desenvolvedor Frontend com uma formação em design. Minha jornada
-            profissional é criar experiências digitais significativas e
-            funcionais.
-          </p>
-          <p className="">
-            💼 Com experiência valiosa na Beuni Tech e na Teamsoft, contribuí
-            para o desenvolvimento de soluções robustas e inovadoras. Meu
-            compromisso em resolver problemas e implementar novas
-            funcionalidades tem sido constante em cada projeto em que estive
-            envolvido.
-          </p>
-          <p className="">
-            🚀 Ao longo dos anos, aprimorei minha compreensão de processos e
-            resolução de problemas complexos, sempre buscando entregar soluções
-            de alta qualidade. Estou empenhado em aprender e crescer
-            profissionalmente, buscando constantemente aprimorar minhas
-            habilidades técnicas e soft skills.
-          </p>
+          <h1 className="text-2xl">{sections.about.title}</h1>
+          {sections.about.history.map((desc, i) => (
+            <p key={i}>{desc}</p>
+          ))}
           <ul className="flex gap-2 mt-6">
             {socials.map((item) => (
               <li key={item.name}>
@@ -141,7 +126,7 @@ const Page = () => {
 
       <Section title="Escolaridade">
         <div>
-          <h3 className="text-neutral-300 text-md font-bold ">
+          <h3 className=" text-md font-bold ">
             Anhanguera - Análise E Desenvolvimento De Sistemas
           </h3>
           <span className="text-sm mt-4">

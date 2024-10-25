@@ -299,6 +299,4 @@ export type ProjectProps = {
   status: "ready" | "progress" | "paused";
 };
 
-
-
 export { jobs, projects, skills, sections };

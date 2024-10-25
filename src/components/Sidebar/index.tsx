@@ -34,7 +34,7 @@ const Sidebar = () => {
         </button>
         {openMenu && (
           <div className="absolute sm:hidden  top-0 left-0 right-0 p-4 bg-neutral-900  h-screen z-50 ">
-            <Menu onClose={() => setOpenMenu(false)} />
+            <Menu />
           </div>
         )}
       </div>
