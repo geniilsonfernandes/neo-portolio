@@ -158,6 +158,44 @@ const jobs = [
 
 const projects = [
   {
+    id: "estimou",
+    title: "Estimou - Orçamentos personalizados",
+    description: {
+      pt: [
+        "Estimou é a ferramenta que elimina a complexidade e o tempo perdido com orçamentos. Chega de enviar propostas via PDF ou WhatsApp sem controle de visualização e sem personalidade.",
+        "Com o Estimou, você cria orçamentos personalizados em segundos e envia um link exclusivo e profissional para cada cliente. Assim, você transforma suas propostas em conversas ágeis e altamente eficazes, gerando mais confiança e fechando negócios mais rápido.",
+      ],
+      en: [
+        "Estimou is the tool that eliminates the complexity and wasted time in creating estimates. No more sending proposals through PDF or WhatsApp without view tracking or personal touch.",
+        "With Estimou, you can create customized quotes in seconds and send a unique, professional link to each client. This way, you turn your proposals into quick and highly effective conversations, building trust and closing deals faster.",
+      ],
+    },
+    type: "front-end",
+    technologies: [
+      "React",
+      "Typescript",
+      "NPM",
+      "TDD",
+      "Vite",
+      "Hook",
+      "Figma",
+      "storybook",
+    ],
+    sections: [
+      {
+        title: "Tecnologias e Implementação",
+        paragraphs: [
+          "Este projeto está sendo desenvolvido em React, com Firebase atuando como backend-as-a-service, e integra uma API externa para funcionalidades específicas da aplicação.",
+          "Meu principal desafio foi implementar uma solução que facilitasse a criação de orçamentos de maneira dinâmica e intuitiva.",
+          "A utilização do Firebase permite sincronizar os orçamentos em tempo real, proporcionando uma experiência fluida e responsiva ao usuário.",
+        ],
+      },
+    ],
+    cover: "/images/estumou_cover.png",
+    status: "progress",
+    link: "https://www.estimou.com/",
+  },
+  {
     id: "money_guard",
     title: "Money Guard",
     description: {
@@ -184,7 +222,6 @@ const projects = [
       "Figma",
     ],
     cover: "/images/money_guard_cover.png",
-    youtube: "https://www.youtube.com/watch?v=QpV5Y5kXbq4",
     github: "https://github.com/geniilsonfernandes/moneyguard",
     status: "ready",
   },
@@ -214,7 +251,6 @@ const projects = [
       "storybook",
     ],
     cover: "/images/use_pagination_cover.png",
-    youtube: "https://www.youtube.com/watch?v=QpV5Y5kXbq4",
     github: "https://github.com/geniilsonfernandes/use-pagination",
     demo: "https://www.npmjs.com/package/use-pagination-pull",
     status: "ready",
@@ -244,7 +280,6 @@ const projects = [
       "storybook",
     ],
     cover: "/images/catalobby_cover.png",
-    youtube: "https://www.youtube.com/watch?v=QpV5Y5kXbq4",
     github: "https://github.com/geniilsonfernandes/catalobby-clientn",
     status: "progress",
   },
@@ -274,7 +309,6 @@ const projects = [
       "storybook",
     ],
     cover: "/images/just_travel_cover.png",
-    youtube: "https://www.youtube.com/watch?v=QpV5Y5kXbq4",
     github: "https://github.com/geniilsonfernandes/just-travel",
     demo: "https://just-travel-tau.vercel.app/",
     status: "ready",
@@ -306,7 +340,6 @@ const projects = [
       "Figma",
     ],
     cover: "/images/money_guard_cover.png",
-    youtube: "https://www.youtube.com/watch?v=QpV5Y5kXbq4",
     github: "https://github.com/geniilsonfernandes/moneyguard",
     status: "ready",
   },
@@ -338,7 +371,6 @@ const projects = [
       "MongoDB",
     ],
     cover: "/images/crm_app_cover.png",
-    youtube: "https://www.youtube.com/watch?v=QpV5Y5kXbq4",
     github: "https://github.com/geniilsonfernandes/crm-dashboard",
     status: "ready",
   },
@@ -354,10 +386,16 @@ export type ProjectProps = {
   type: string;
   technologies: string[];
   cover: string;
-  youtube: string;
+  youtube?: string;
   github: string;
+  link?: string;
   demo: string;
   status: "ready" | "progress" | "paused";
+  sections?: {
+    title: string;
+    images?: string[];
+    paragraphs?: string[];
+  }[];
 };
 
-export { jobs, projects, skills, stacks, socials };
+export { jobs, projects, skills, socials, stacks };

@@ -1,56 +1,80 @@
-import { projects } from "@/cms";
-import AnchorButton from "@/components/AnchorButton";
-import { ProjectDescription } from "@/components/Project";
-import Tag from "@/components/Tag";
-import Image from "next/image";
+import { ProjectProps, projects } from "@/cms";
+import { ProjectDetails } from "@/components/ProjectDetails";
+import { cn } from "@/utils";
+import Link from "next/link";
+
+type getDataResponse = {
+  project: ProjectProps;
+  previous: ProjectProps | null;
+  next: ProjectProps | null;
+};
 
 async function getData(id: string) {
-  const res = projects.find((project) => project.id === id);
+  const project = projects.find((project) => project.id === id);
+  const index = projects.findIndex((project) => project.id === id);
+  const previous = projects[index - 1];
+  const next = projects[index + 1];
 
-  if (res === undefined) {
-    throw new Error("Failed to fetch data");
-  }
-
-  return res;
+  return {
+    project,
+    previous,
+    next,
+  };
 }
 
 export const revalidate = 3600;
 
-export default async function Page({ params }: { params: { id: string } }) {
-  const data = await getData(params.id);
+type ProjetctLinkProps = {
+  project: ProjectProps;
+  isNext?: boolean;
+  isPrevious?: boolean;
+};
+
+const ProjetctLink = ({ project, isNext, isPrevious }: ProjetctLinkProps) => {
+  const title = {
+    next: "proximo projeto",
+    previous: "projeto anterior",
+  };
+
+  if (!project) return <div className="bg-neutral-50 flex-1" />;
 
   return (
-    <div className="space-y-8 animation-slide-up">
-      <div className="relative w-full h-96">
-        <Image src={data.cover} alt="image" fill className="object-contain" />
-      </div>
-      <div className="flex gap-4 ">
-        {data.github && (
-          <AnchorButton href={data.github} target="_blank" variant="button">
-            Repo
-          </AnchorButton>
+    <Link href={`${project.id}`} className="flex-1">
+      <div
+        className={cn(
+          "p-4 border w-full border-neutral-800 rounded-sm hover:bg-neutral-200",
+          {
+            "rounded-tl-none": isNext,
+            "rounded-tr-none": isPrevious,
+            "text-end": isNext,
+          }
         )}
-        {data.demo && (
-          <AnchorButton href={data.demo} target="_blank" variant="button">
-            Demo
-          </AnchorButton>
+      >
+        <div className={cn("text-xs text-neutral-800 uppercase", {})}>
+          {isNext && title.next}
+          {isPrevious && title.previous}
+        </div>
+        <div className="text-lg font-bold underline">{project.title}</div>
+      </div>
+    </Link>
+  );
+};
+
+export default async function Page({ params }: { params: { id: string } }) {
+  const { project, next, previous } = await getData(params.id);
+
+  return (
+    <>
+      {project && <ProjectDetails project={project} />}
+
+      <div
+        className={cn(
+          "flex flex-col sm:flex-row gap-2 justify-between mt-8 pt-8 border-t border-neutral-800"
         )}
+      >
+        <ProjetctLink project={previous} isPrevious />
+        <ProjetctLink project={next} isNext />
       </div>
-      <div className="col-span-12 sm:col-span-9 ">
-        <div className="flex gap-2 justify-between items-end ">
-          <h2 className="text-2xl font-bold ">{data.title}</h2>
-          <Tag
-            name={data.status === "ready" ? "Concluído" : "Em andamento"}
-            color={data.status === "ready" ? "green" : "yellow"}
-          />
-        </div>
-        <ProjectDescription description={data.description} />
-        <div className="flex gap-2 flex-wrap mt-8">
-          {data.technologies.map((tech, i) => (
-            <Tag key={i} name={tech} />
-          ))}
-        </div>
-      </div>
-    </div>
+    </>
   );
 }

@@ -9,12 +9,14 @@ type ProjectDescriptionProps = {
   description: ProjectProps["description"];
   className?: string;
   short?: boolean;
+  showTitle?: boolean;
 };
 
 export const ProjectDescription = ({
   description,
   className = "text-sm leading-5 font-mono mt-4",
   short = false,
+  showTitle,
 }: ProjectDescriptionProps) => {
   const locale = useLocale() as "en" | "pt";
 
@@ -24,6 +26,17 @@ export const ProjectDescription = ({
 
   return (
     <>
+      {showTitle && (
+        <h1 className="text-lg sm:text-2xl font-bold">
+          {
+            {
+              en: "Description",
+              pt: "Descrição",
+            }[locale]
+          }
+        </h1>
+      )}
+      <h1 className="text-lg sm:text-2xl font-bold"></h1>
       {description[locale].map((desc, i) => (
         <p key={i} className={className}>
           {desc}
