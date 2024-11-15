@@ -3,11 +3,32 @@ import { ProjectDetails } from "@/components/ProjectDetails";
 import { cn } from "@/utils";
 import Link from "next/link";
 
-type getDataResponse = {
-  project: ProjectProps;
-  previous: ProjectProps | null;
-  next: ProjectProps | null;
-};
+
+
+export async function generateMetadata({ params }: { params: { id: string } }) {
+  const project = projects.find((project) => project.id === params.id);
+
+  if (!project) {
+    return {
+      title: "Projeto não encontrado",
+      description: "O projeto solicitado não existe.",
+    };
+  }
+
+  return {
+    title: project.title,
+    description: project.description || "Confira este incrível projeto.",
+    openGraph: {
+      title: project.title,
+      description: project.description,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: project.title,
+      description: project.description,
+    },
+  };
+}
 
 async function getData(id: string) {
   const project = projects.find((project) => project.id === id);
