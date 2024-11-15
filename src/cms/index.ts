@@ -302,7 +302,7 @@ const projects = [
       "storybook",
     ],
     cover: "/images/catalobby_cover.png",
-    github: "https://github.com/geniilsonfernandes/catalobby-clientn",
+    github: "https://github.com/geniilsonfernandes/catalobby-client",
     status: "progress",
   },
   {
