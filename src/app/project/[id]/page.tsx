@@ -17,15 +17,21 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
 
   return {
     title: project.title,
-    description: project.description || "Confira este incrível projeto.",
+    description:
+      project.description.pt.map((paragraph) => paragraph).join(" ") ||
+      "Confira este incrível projeto.",
     openGraph: {
       title: project.title,
-      description: project.description,
+      description: project.description.pt
+        .map((paragraph) => paragraph)
+        .join(" "),
     },
     twitter: {
       card: "summary_large_image",
       title: project.title,
-      description: project.description,
+      description: project.description.pt
+        .map((paragraph) => paragraph)
+        .join(" "),
     },
   };
 }
