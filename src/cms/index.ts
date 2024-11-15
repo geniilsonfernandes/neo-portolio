@@ -183,7 +183,7 @@ const projects = [
     ],
     sections: [
       {
-        title: "Tecnologias e Implementação",
+        title: "implementations",
         paragraphs: [
           "Este projeto está sendo desenvolvido em React, com Firebase atuando como backend-as-a-service, e integra uma API externa para funcionalidades específicas da aplicação.",
           "Meu principal desafio foi implementar uma solução que facilitasse a criação de orçamentos de maneira dinâmica e intuitiva.",
