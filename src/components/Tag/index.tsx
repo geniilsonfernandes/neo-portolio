@@ -9,7 +9,7 @@ const Tag = ({ name, color = "green" }: TagProps) => {
   return (
     <span
       className={cn(
-        "text-black/80 p-1 h-6 text-xs uppercase font-mono flex items-center",
+        "text-black/80 p-1 h-6 text-xs inline-flex uppercase font-mono items-center",
         color === "green"
           ? "bg-green-500"
           : color === "red"

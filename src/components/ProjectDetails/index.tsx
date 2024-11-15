@@ -1,7 +1,8 @@
 import { ProjectProps } from "@/cms";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import AnchorButton from "../AnchorButton";
-import { ProjectDescription } from "../Project";
+import { ProjectDescription } from "../ProjectDescription";
 import Tag from "../Tag";
 
 type SectionProps = {
@@ -11,19 +12,29 @@ type SectionProps = {
 };
 
 const Section = ({ title, paragraphs, images }: SectionProps) => {
+  const t = useTranslations("Projects");
   return (
-    <section className="space-y-4">
-      <h1 className="text-lg sm:text-2xl font-bold">{title}</h1>
-      {images?.map((image) => (
-        <div key={image} className="w-full h-96 bg-slate-50">
-          imagem
-        </div>
-      ))}
+    <section className="space-y-4 relative w-full">
+      <h1 className="text-lg sm:text-2xl font-bold">
+        {t(`sections.${title}`)}
+      </h1>
       {paragraphs?.map((p, i) => (
         <p key={i} className="text-sm leading-5 font-mono mt-4">
           {p}
         </p>
       ))}
+      <div className="flex gap-2 flex-wrap justify-center">
+        {images?.map((image) => (
+          <Image
+            key={image}
+            className="bg-slate-50 cursor-pointer border border-slate-200"
+            width={380}
+            height={380}
+            src={image}
+            alt=""
+          />
+        ))}
+      </div>
     </section>
   );
 };

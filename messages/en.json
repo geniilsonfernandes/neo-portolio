@@ -55,6 +55,11 @@
         }
     },
     "Projects": {
+        "sections": {
+            "resume": "Description",
+            "implementations": "Technologies and Implementation",
+            "design": "User Experience"
+        },
         "title": "All projects",
         "description": "Here are some of the projects I've worked on, focusing on developing efficient and innovative software solutions to tackle complex frontend challenges.",
         "money_guard": {

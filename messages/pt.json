@@ -55,27 +55,12 @@
         }
     },
     "Projects": {
-        "title": "Todos os projetos",
-        "description": "Aqui estão alguns dos projetos em que trabalhei, focando no desenvolvimento de soluções de software eficientes e inovadoras para enfrentar desafios complexos de frontend.",
-        "money_guard": {
-            "title": "Money Guard",
-            "description": "<p>Money Guard é um aplicativo de controle financeiro focado no gerenciamento mensal, definição de metas, tendo o salário do usuário como ponto central. Com ele, é possível acompanhar a renda de forma mais eficiente, definir objetivos e economizar dinheiro.</p> <p>Este aplicativo surgiu da necessidade de substituir o Google Sheets por um sistema mais completo. Minha esposa e eu enfrentamos limitações usando o Google Sheets para gerenciar nossas finanças, o que nos motivou a criar o Money Guard.</p>"
+        "sections": {
+            "resume": "Descrição",
+            "implementations": "Tecnologias e Implementação",
+            "design": "Experiência do Usuário"
         },
-        "cover": "/images/money_guard_cover.png",
-        "youtube": "https://www.youtube.com/watch?v=QpV5Y5kXbq4",
-        "github": "https://github.com/geniilsonfernandes/moneyguard",
-        "status": "pronto",
-        "technologies": [
-            "Next.js",
-            "React",
-            "Tailwind",
-            "Typescript",
-            "Prisma",
-            "Docker",
-            "Redux",
-            "Jest",
-            "Vercel",
-            "Figma"
-        ]
+        "title": "Todos os projetos",
+        "description": "Aqui estão alguns dos projetos em que trabalhei, focando no desenvolvimento de soluções de software eficientes e inovadoras para enfrentar desafios complexos de frontend."
     }
 }

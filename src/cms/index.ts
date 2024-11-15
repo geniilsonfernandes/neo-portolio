@@ -221,6 +221,28 @@ const projects = [
       "Vercel",
       "Figma",
     ],
+    sections: [
+      {
+        title: "implementations",
+        paragraphs: [
+          "Este projeto estava sendo desenvolvido em React, com Firebase atuando como backend-as-a-service, e integra uma API externa para funcionalidades específicas da aplicação.",
+          "Meu principal desafio foi implementar uma solução que facilitasse a criação de orçamentos de maneira dinâmica e intuitiva.",
+          "A utilização do Firebase permite sincronizar os orçamentos em tempo real, proporcionando uma experiência fluida e responsiva ao usuário.",
+        ],
+      },
+      {
+        title: "design",
+        paragraphs: [
+          "O principal desafio deste projeto foi a implementação de uma solução que facilitasse a criação de entradas e saidas de maneira dinâmica e intuitiva.",
+        ],
+        images: [
+          "/images/money-01.png",
+          "/images/money-02.png",
+          "/images/money-03.png",
+          "/images/money-04.png",
+        ],
+      },
+    ],
     cover: "/images/money_guard_cover.png",
     github: "https://github.com/geniilsonfernandes/moneyguard",
     status: "ready",

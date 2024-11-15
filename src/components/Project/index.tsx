@@ -1,50 +1,10 @@
 "use client";
 
 import { ProjectProps } from "@/cms";
-import { useLocale } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
-
-type ProjectDescriptionProps = {
-  description: ProjectProps["description"];
-  className?: string;
-  short?: boolean;
-  showTitle?: boolean;
-};
-
-export const ProjectDescription = ({
-  description,
-  className = "text-sm leading-5 font-mono mt-4",
-  short = false,
-  showTitle,
-}: ProjectDescriptionProps) => {
-  const locale = useLocale() as "en" | "pt";
-
-  if (short) {
-    return <p className={className}>{description[locale][0]}</p>;
-  }
-
-  return (
-    <>
-      {showTitle && (
-        <h1 className="text-lg sm:text-2xl font-bold">
-          {
-            {
-              en: "Description",
-              pt: "Descrição",
-            }[locale]
-          }
-        </h1>
-      )}
-      <h1 className="text-lg sm:text-2xl font-bold"></h1>
-      {description[locale].map((desc, i) => (
-        <p key={i} className={className}>
-          {desc}
-        </p>
-      ))}
-    </>
-  );
-};
+import { ProjectDescription } from "../ProjectDescription";
+import Tag from "../Tag";
 
 type ProjectCardProps = {
   path: string;
@@ -60,6 +20,7 @@ const Project = ({
   title,
   projectNumber = 0,
   onClick,
+  status,
 }: ProjectCardProps) => {
   return (
     <Link
@@ -71,8 +32,13 @@ const Project = ({
       </span>
       <div className="flex flex-1 justify-between">
         <div>
-          <h1 className="text-lg font-bold underline">{title}</h1>
-
+          <div className="flex gap-4 align-center">
+            <h1 className="text-lg font-bold underline">{title}</h1>
+            <Tag
+              name={status === "ready" ? "Concluído" : "Em andamento"}
+              color={status === "ready" ? "green" : "yellow"}
+            />
+          </div>
           <ProjectDescription
             description={description}
             className="text-sm  max-w-[400px]"
