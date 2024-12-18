@@ -1,12 +1,12 @@
 import Link from "next/link";
-import Logo from "../Logo";
+import Logo from "./Logo";
 
 import { useTranslations } from "next-intl";
 
 export const Footer = () => {
   const t = useTranslations("Footer");
   return (
-    <footer className="container mt-40 gap-24 flex flex-col justify-between">
+    <footer className="mt-40 gap-24 flex flex-col justify-between">
       <div className="py-8">
         <Link href="/">
           <Logo />

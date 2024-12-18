@@ -131,29 +131,6 @@ const jobs = [
       "Backend Integration",
     ],
   },
-  {
-    company: "SIB - Sistema Impulse de Educação Bilíngue",
-    job: "Graphic Designer",
-    period: "Jan 2018 - Jun 2020 · 2 years 6 months",
-    description: {
-      pt: [
-        "Responsável pelo desenvolvimento de peças e gerenciamento de projetos em diversas áreas de comunicação offline e online, criação de animações e edição de vídeos, e criação de materiais educacionais para metodologia de ensino e eventos.",
-      ],
-      en: [
-        "Responsible for developing pieces and managing projects in various offline and online communication areas, creating animations and editing videos, and creating educational materials for teaching methodology and events.",
-      ],
-    },
-    stacks: [
-      "Photoshop",
-      "Illustrator",
-      "Figma",
-      "Adobe XD",
-      "HTML",
-      "CSS",
-      "Javascript",
-      "React",
-    ],
-  },
 ] as JobProps[];
 
 const projects = [

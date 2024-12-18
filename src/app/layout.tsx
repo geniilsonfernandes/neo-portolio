@@ -1,12 +1,8 @@
-import Logo from "@/components/Logo";
-import Menu from "@/components/Menu";
 import type { Metadata } from "next";
 import { getLocale, getMessages } from "next-intl/server";
 import { Inria_Sans } from "next/font/google";
-import Link from "next/link";
 import "./globals.css";
 
-import { Footer } from "@/components/Footer";
 import { NextIntlClientProvider } from "next-intl";
 
 const inria = Inria_Sans({
@@ -37,14 +33,12 @@ export default async function RootLayout({
 
   return (
     <html lang={locale}>
-      <body className={`${inria.className}`}>
+      <body
+        className={`${inria.className} bg-red-100 bg-gradient-to-t from-gray-100 to-gray-50`}
+      >
         <NextIntlClientProvider messages={messages}>
-          <main className="container">
-            <Menu />
-            {children}
-          </main>
+          {children}
         </NextIntlClientProvider>
-        <Footer />
       </body>
     </html>
   );
