@@ -1,5 +1,4 @@
 import { Footer } from "@/components/Footer";
-import { IconTerminal2 } from "@tabler/icons-react";
 
 import { jobs } from "@/cms";
 import { BackEndSection } from "@/components/BackEndSection";
@@ -88,9 +87,31 @@ export default function Home() {
         aria-label="Main Header"
       >
         <header className="flex items-center justify-between border rounded-md bg-white p-4 mb-4 lg:hidden">
-          <button aria-label="Open Terminal">
-            <IconTerminal2 size={24} stroke={1} />
-          </button>
+          <Spotlight
+            data={[
+              ...projects.map((project) => ({
+                id: project.id,
+                title: project.title,
+                description: project.technologies?.join(", ") || "",
+                variant: "projects",
+              })),
+              {
+                id: "git2hub",
+                title: "GitHub",
+                variant: "link",
+              },
+              {
+                id: "github2",
+                title: "GitHub",
+                variant: "link",
+              },
+              {
+                id: "git1hub2",
+                title: "GitHub",
+                variant: "link",
+              },
+            ]}
+          />
           <Contact />
         </header>
         <Header />
