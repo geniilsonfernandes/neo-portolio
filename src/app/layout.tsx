@@ -33,9 +33,7 @@ export default async function RootLayout({
 
   return (
     <html lang={locale}>
-      <body
-        className={`${inria.className} bg-red-100 bg-gradient-to-t from-gray-100 to-gray-50`}
-      >
+      <body className={`${inria.className} bg-gray-50 `}>
         <NextIntlClientProvider messages={messages}>
           {children}
         </NextIntlClientProvider>

@@ -11,7 +11,27 @@ import {
   IconSend,
 } from "@tabler/icons-react";
 import { AnimatePresence, motion } from "framer-motion";
-import { forwardRef, useState } from "react";
+import { forwardRef, useEffect } from "react";
+import { create } from "zustand";
+
+// Defina a interface do estado da store
+interface StoreState {
+  isOpen: boolean;
+  open: () => void;
+  toggle: () => void;
+  close: () => void;
+}
+
+// Crie a store usando a interface
+const contactStore = create<StoreState>((set) => ({
+  isOpen: false,
+  open: () => set({ isOpen: true }),
+  close: () => set({ isOpen: false }),
+  toggle: () =>
+    set((state) => ({
+      isOpen: !state.isOpen,
+    })),
+}));
 
 interface IInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;
@@ -38,6 +58,8 @@ const Input = forwardRef<HTMLInputElement, IInputProps>(
   }
 );
 
+Input.displayName = "Input";
+
 const TextArea = forwardRef<HTMLTextAreaElement, ITextAreaProps>(
   ({ label, className, ...props }, ref) => {
     return (
@@ -56,27 +78,35 @@ const TextArea = forwardRef<HTMLTextAreaElement, ITextAreaProps>(
   }
 );
 
+TextArea.displayName = "TextArea";
+
 export const Contact = () => {
-  const [opened, setOpened] = useState(false);
-  const ref = useClickOutside(() => setOpened(false), ["mouseup", "touchend"]);
+  const { close, open, isOpen } = contactStore();
+  const ref = useClickOutside(close, ["mouseup", "touchend"]);
 
-  const onClose = () => {
-    setOpened(false);
-  };
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
 
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isOpen]);
   return (
-    <div>
-      <button aria-label="Collapse Layout" onClick={() => setOpened(true)}>
+    <>
+      <button aria-label="Collapse Layout" onClick={open}>
         <IconLayoutBottombarCollapse size={24} stroke={1} />
       </button>
-
       <AnimatePresence>
-        {opened && (
+        {isOpen && (
           <>
             {/* Backdrop */}
             <motion.div
-              className="fixed inset-0 bg-white/15 backdrop-blur-sm z-40"
-              onClick={onClose}
+              className="fixed inset-0 bg-gray-500/30 backdrop-blur-sm z-40"
+              onClick={close}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -104,7 +134,7 @@ export const Contact = () => {
               >
                 {/* Close Button */}
                 <button
-                  onClick={onClose}
+                  onClick={close}
                   className="absolute top-8 right-4 text-gray-600 hover:text-gray-800"
                   aria-label="Close Modal"
                 >
@@ -113,7 +143,7 @@ export const Contact = () => {
 
                 {/* Modal Content */}
                 <h1 className="text-2xl font-bold lg:max-w-[50%]">
-                  Let's build something great together.
+                  Let build something great together.
                 </h1>
                 <div className="flex gap-2 my-8">
                   <a
@@ -173,6 +203,7 @@ export const Contact = () => {
           </>
         )}
       </AnimatePresence>
-    </div>
+    </>
   );
 };
+

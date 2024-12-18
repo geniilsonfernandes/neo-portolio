@@ -10,13 +10,14 @@ import Job from "@/components/Job";
 import { LanguagesSection } from "@/components/LanguagesSection";
 import { ProjectsSection } from "@/components/ProjectsSection";
 import { Section } from "@/components/Section";
+import { Spotlight } from "@/components/Spotlight";
 import { TestingSection } from "@/components/TestingSection";
 import { IProject } from "@/types";
 import { Header } from "../components/Header";
 
 const projects = [
   {
-    id: "1",
+    id: "a",
     title: "Estimou - Orçamentos Personalizados",
     description:
       "Uma ferramenta que elimina a complexidade e o tempo desperdiçado na criação de orçamentos. Oferece rastreamento de visualização e toque pessoal nas propostas.",
@@ -30,7 +31,7 @@ const projects = [
     demo: "https://estimou.com",
   },
   {
-    id: "2",
+    id: "b",
     title: "Taskify - Gerenciador de Tarefas",
     description:
       "Aplicativo de gerenciamento de tarefas com interface intuitiva e funcionalidades de arrastar e soltar para organizar o seu dia.",
@@ -42,7 +43,31 @@ const projects = [
     demo: "https://taskify.app",
   },
   {
-    id: "3",
+    id: "c",
+    title: "Lunar Webs - Plataforma de Serviços",
+    description:
+      "Plataforma onde os usuários podem oferecer e contratar diferentes tipos de serviços, com sistema de avaliações e integração de pagamento.",
+    cover: "https://via.placeholder.com/300x200?text=Lunar+Webs",
+    status: "Prototype",
+    type: "Web App",
+    technologies: ["Nextjs", "Prisma", "Tailwind", "TypeScript"],
+    storybook: "https://storybook.lunarwebs.com",
+    github: "https://github.com/user/lunarwebs",
+  },
+  {
+    id: "d",
+    title: "Lunar Webs - Plataforma de Serviços",
+    description:
+      "Plataforma onde os usuários podem oferecer e contratar diferentes tipos de serviços, com sistema de avaliações e integração de pagamento.",
+    cover: "https://via.placeholder.com/300x200?text=Lunar+Webs",
+    status: "Prototype",
+    type: "Web App",
+    technologies: ["Nextjs", "Prisma", "Tailwind", "TypeScript"],
+    storybook: "https://storybook.lunarwebs.com",
+    github: "https://github.com/user/lunarwebs",
+  },
+  {
+    id: "f",
     title: "Lunar Webs - Plataforma de Serviços",
     description:
       "Plataforma onde os usuários podem oferecer e contratar diferentes tipos de serviços, com sistema de avaliações e integração de pagamento.",
@@ -73,9 +98,31 @@ export default function Home() {
 
       <main className="px-4 py-8">
         <header className="items-center justify-between border rounded-md bg-white p-4 hidden lg:flex sticky top-8 z-50">
-          <button aria-label="Open Terminal">
-            <IconTerminal2 size={24} stroke={1} />
-          </button>
+          <Spotlight
+            data={[
+              ...projects.map((project) => ({
+                id: project.id,
+                title: project.title,
+                description: project.technologies?.join(", ") || "",
+                variant: "projects",
+              })),
+              {
+                id: "git2hub",
+                title: "GitHub",
+                variant: "link",
+              },
+              {
+                id: "github2",
+                title: "GitHub",
+                variant: "link",
+              },
+              {
+                id: "git1hub2",
+                title: "GitHub",
+                variant: "link",
+              },
+            ]}
+          />
           <Contact />
         </header>
         <section aria-labelledby="projects-header">

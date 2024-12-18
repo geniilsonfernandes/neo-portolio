@@ -24,6 +24,7 @@ html {
 
 
 
+
 @layer base {
   body {
     @apply bg-white;
@@ -31,6 +32,8 @@ html {
  
    
   }
+
+
 
   .animation-slide-up {
     animation: slide-up 200ms ease-in-out forwards;

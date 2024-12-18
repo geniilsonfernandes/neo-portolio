@@ -90,7 +90,8 @@ export const ProjectsSection: React.FC<IProjectsSection> = ({ data }) => {
             onMouseEnter={() => setHoveredIndex(i)}
             onMouseLeave={() => setHoveredIndex(null)}
             className={cn({
-              "opacity-50": i !== hoveredIndex && hoveredIndex !== null,
+              "opacity-50 blur-[2px]":
+                i !== hoveredIndex && hoveredIndex !== null,
             })}
             project={project}
           />
