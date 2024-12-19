@@ -9,77 +9,75 @@ import Job from "@/components/Job";
 import { LanguagesSection } from "@/components/LanguagesSection";
 import { ProjectsSection } from "@/components/ProjectsSection";
 import { Section } from "@/components/Section";
-import { Spotlight } from "@/components/Spotlight";
+import { ISpotlightOption, Spotlight } from "@/components/Spotlight";
 import { TestingSection } from "@/components/TestingSection";
-import { IProject } from "@/types";
+import {
+  IconBrandGithub,
+  IconBrandInstagram,
+  IconBrandLinkedin,
+  IconBrandThreads,
+  IconCode,
+  IconFileTypeDocx,
+} from "@tabler/icons-react";
 import { Header } from "../components/Header";
+import { getProjects } from "./actions";
 
-const projects = [
-  {
-    id: "a",
-    title: "Estimou - Orçamentos Personalizados",
-    description:
-      "Uma ferramenta que elimina a complexidade e o tempo desperdiçado na criação de orçamentos. Oferece rastreamento de visualização e toque pessoal nas propostas.",
-    cover: "https://via.placeholder.com/300x200?text=Estimou",
-    status: "Completed",
-    type: "Web App",
-    technologies: ["React", "Tailwind CSS", "TypeScript", "Firebase"],
-    storybook: "https://storybook.estimou.com",
-    github: "https://github.com/user/estimou",
-    youtube: "https://www.youtube.com/watch?v=estimou-demo",
-    demo: "https://estimou.com",
-  },
-  {
-    id: "b",
-    title: "Taskify - Gerenciador de Tarefas",
-    description:
-      "Aplicativo de gerenciamento de tarefas com interface intuitiva e funcionalidades de arrastar e soltar para organizar o seu dia.",
-    cover: "https://via.placeholder.com/300x200?text=Taskify",
-    status: "In Progress",
-    type: "Mobile App",
-    technologies: ["Flutter", "Firebase", "Dart"],
-    github: "https://github.com/user/taskify",
-    demo: "https://taskify.app",
-  },
-  {
-    id: "c",
-    title: "Lunar Webs - Plataforma de Serviços",
-    description:
-      "Plataforma onde os usuários podem oferecer e contratar diferentes tipos de serviços, com sistema de avaliações e integração de pagamento.",
-    cover: "https://via.placeholder.com/300x200?text=Lunar+Webs",
-    status: "Prototype",
-    type: "Web App",
-    technologies: ["Nextjs", "Prisma", "Tailwind", "TypeScript"],
-    storybook: "https://storybook.lunarwebs.com",
-    github: "https://github.com/user/lunarwebs",
-  },
-  {
-    id: "d",
-    title: "Lunar Webs - Plataforma de Serviços",
-    description:
-      "Plataforma onde os usuários podem oferecer e contratar diferentes tipos de serviços, com sistema de avaliações e integração de pagamento.",
-    cover: "https://via.placeholder.com/300x200?text=Lunar+Webs",
-    status: "Prototype",
-    type: "Web App",
-    technologies: ["Nextjs", "Prisma", "Tailwind", "TypeScript"],
-    storybook: "https://storybook.lunarwebs.com",
-    github: "https://github.com/user/lunarwebs",
-  },
-  {
-    id: "f",
-    title: "Lunar Webs - Plataforma de Serviços",
-    description:
-      "Plataforma onde os usuários podem oferecer e contratar diferentes tipos de serviços, com sistema de avaliações e integração de pagamento.",
-    cover: "https://via.placeholder.com/300x200?text=Lunar+Webs",
-    status: "Prototype",
-    type: "Web App",
-    technologies: ["Nextjs", "Prisma", "Tailwind", "TypeScript"],
-    storybook: "https://storybook.lunarwebs.com",
-    github: "https://github.com/user/lunarwebs",
-  },
-] as IProject[];
+export default async function Home() {
+  const projects = await getProjects();
 
-export default function Home() {
+  const spotlight: ISpotlightOption[] = [
+    ...projects?.map((project) => ({
+      id: project.id,
+      title: project.title || "",
+      description: project.description || "",
+      variant: "projects",
+      value: project.demo,
+    })),
+    {
+      id: "threads",
+      title: "Threads",
+      variant: "link",
+      icon: <IconBrandThreads size={18} stroke={1} />,
+      value: "https://threads.net/@gefernandes",
+    },
+    {
+      id: "github",
+      title: "Github",
+      variant: "link",
+      icon: <IconBrandGithub size={18} stroke={1} />,
+      value: "https://github.com/geniilsonfernandes",
+    },
+    {
+      id: "linkedin",
+      title: "Linkedin",
+      variant: "link",
+      icon: <IconBrandLinkedin size={18} stroke={1} />,
+      value: "https://www.linkedin.com/in/genilson-fernandes-489870320/",
+    },
+    {
+      id: "instagram",
+      title: "Instagram",
+      variant: "link",
+      icon: <IconBrandInstagram size={18} stroke={1} />,
+      value: "https://www.instagram.com/genilsonfernandes_",
+    },
+    {
+      id: "devto",
+      title: "Dev.to",
+      variant: "link",
+      icon: <IconCode size={18} stroke={1} />,
+      value: "https://dev.to/geniilsonfernandes",
+    },
+    {
+      id: "cv",
+      title: "CV",
+      variant: "others",
+      icon: <IconFileTypeDocx size={18} stroke={1} />,
+      value:
+        "https://docs.google.com/document/d/e/2PACX-1vR_6I_IYYlFP8xZFukZJP5t0rTY19XRm55AjyOde9h0kBCvZ-FUbjCy3Qfo7gmBc8NeymdRcwbKaZmt/pub",
+    },
+  ];
+
   return (
     <div className="flex lg:flex-row flex-col">
       <aside
@@ -87,31 +85,7 @@ export default function Home() {
         aria-label="Main Header"
       >
         <header className="flex items-center justify-between border rounded-md bg-white p-4 mb-4 lg:hidden">
-          <Spotlight
-            data={[
-              ...projects.map((project) => ({
-                id: project.id,
-                title: project.title,
-                description: project.technologies?.join(", ") || "",
-                variant: "projects",
-              })),
-              {
-                id: "git2hub",
-                title: "GitHub",
-                variant: "link",
-              },
-              {
-                id: "github2",
-                title: "GitHub",
-                variant: "link",
-              },
-              {
-                id: "git1hub2",
-                title: "GitHub",
-                variant: "link",
-              },
-            ]}
-          />
+          <Spotlight data={spotlight} />
           <Contact />
         </header>
         <Header />
@@ -119,36 +93,15 @@ export default function Home() {
 
       <main className="px-4 py-8">
         <header className="items-center justify-between border rounded-md bg-white p-4 hidden lg:flex sticky top-8 z-50">
-          <Spotlight
-            data={[
-              ...projects.map((project) => ({
-                id: project.id,
-                title: project.title,
-                description: project.technologies?.join(", ") || "",
-                variant: "projects",
-              })),
-              {
-                id: "git2hub",
-                title: "GitHub",
-                variant: "link",
-              },
-              {
-                id: "github2",
-                title: "GitHub",
-                variant: "link",
-              },
-              {
-                id: "git1hub2",
-                title: "GitHub",
-                variant: "link",
-              },
-            ]}
-          />
+          <Spotlight data={spotlight} />
           <Contact />
         </header>
-        <section aria-labelledby="projects-header">
-          <ProjectsSection data={projects} />
-        </section>
+
+        {projects.length > 0 && (
+          <section aria-labelledby="projects-header">
+            <ProjectsSection data={projects} />
+          </section>
+        )}
 
         <hr className="my-8" />
 

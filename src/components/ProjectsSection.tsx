@@ -1,63 +1,48 @@
 "use client";
 
-import { IProject } from "@/types";
 import { cn } from "@/utils";
-import {
-  IconBrandGolang,
-  IconBrandNextjs,
-  IconBrandNodejs,
-  IconBrandReact,
-  IconBrandTailwind,
-  IconBrandTypescript,
-} from "@tabler/icons-react";
+import { AnimatePresence, motion } from "framer-motion";
 import { useMemo, useState } from "react";
-import { ProjectCard } from "./ProjectCard";
+import { IProject, ProjectCard } from "./ProjectCard";
 import { Section } from "./Section";
+import { IconType, techsIcons } from "./techIcons";
 
 interface IProjectsSection {
-  data: IProject[];
+  data?: IProject[];
 }
 
 export const ProjectsSection: React.FC<IProjectsSection> = ({ data }) => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [selectedTechs, setSelectedTechs] = useState<string[]>([]);
-  const techs = [
-    {
-      name: "React",
-      icon: <IconBrandReact size={18} stroke={1} />,
-    },
-    {
-      name: "Tailwind",
-      icon: <IconBrandTailwind size={18} stroke={1} />,
-    },
-    {
-      name: "Typescript",
-      icon: <IconBrandTypescript size={18} stroke={1} />,
-    },
-    {
-      name: "Nextjs",
-      icon: <IconBrandNextjs size={18} stroke={1} />,
-    },
-    {
-      name: "Golang",
-      icon: <IconBrandGolang size={18} stroke={1} />,
-    },
-    {
-      name: "Nodejs",
-      icon: <IconBrandNodejs size={18} stroke={1} />,
-    },
-  ] as {
-    name: string;
-    icon: React.ReactNode;
-  }[];
+
+  const techs = useMemo(() => {
+    const allTechnologies =
+      data?.flatMap((project) => project.technologies ?? []) ?? [];
+
+    const techSet: Record<string, boolean> = {};
+    const uniqueTechs: string[] = [];
+
+    for (const tech of allTechnologies) {
+      if (!techSet[tech]) {
+        uniqueTechs.push(tech);
+        techSet[tech] = true; // Marca a tecnologia como já vista
+      }
+    }
+
+    return uniqueTechs;
+  }, [data]);
 
   const projectMatchesTechs = useMemo(() => {
-    return data?.filter((project) => {
-      if (selectedTechs.length === 0) {
-        return true;
-      }
-      return project.technologies?.some((tech) => selectedTechs.includes(tech));
-    });
+    return (
+      data?.filter((project) => {
+        if (selectedTechs.length === 0) {
+          return true;
+        }
+        return project.technologies?.some((tech) =>
+          selectedTechs.includes(tech)
+        );
+      }) ?? []
+    );
   }, [selectedTechs, data]);
 
   return (
@@ -69,33 +54,41 @@ export const ProjectsSection: React.FC<IProjectsSection> = ({ data }) => {
             key={i}
             className={cn(
               "inline-flex items-center gap-2 border p-2 rounded-md",
-              selectedTechs.includes(tech.name) && "bg-gray-700 text-white"
+              selectedTechs.includes(tech) && "bg-gray-700 text-white"
             )}
             onClick={() => {
-              if (selectedTechs.includes(tech.name)) {
-                setSelectedTechs(selectedTechs.filter((t) => t !== tech.name));
+              if (selectedTechs.includes(tech)) {
+                setSelectedTechs(selectedTechs.filter((t) => t !== tech));
               } else {
-                setSelectedTechs([...selectedTechs, tech.name]);
+                setSelectedTechs([...selectedTechs, tech]);
               }
             }}
           >
-            {tech.icon}
+            {techsIcons[tech as IconType] ?? tech}
           </button>
         ))}
       </div>
       <div className=" gap-4 group mt-4 grid grid-cols-1 lg:grid-cols-2">
-        {projectMatchesTechs.map((project, i) => (
-          <ProjectCard
-            key={i}
-            onMouseEnter={() => setHoveredIndex(i)}
-            onMouseLeave={() => setHoveredIndex(null)}
-            className={cn({
-              "opacity-50 blur-[2px]":
-                i !== hoveredIndex && hoveredIndex !== null,
-            })}
-            project={project}
-          />
-        ))}
+        <AnimatePresence>
+          {projectMatchesTechs.map((project, i) => (
+            <motion.div
+              key={project.id}
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+            >
+              <ProjectCard
+                onMouseEnter={() => setHoveredIndex(i)}
+                onMouseLeave={() => setHoveredIndex(null)}
+                className={cn({
+                  "opacity-50 blur-[2px]":
+                    i !== hoveredIndex && hoveredIndex !== null,
+                })}
+                project={project}
+              />
+            </motion.div>
+          ))}
+        </AnimatePresence>
       </div>
     </Section>
   );

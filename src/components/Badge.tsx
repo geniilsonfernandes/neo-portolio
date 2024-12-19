@@ -1,4 +1,4 @@
-interface IBadgeProps extends React.HTMLAttributes<HTMLDivElement> {
+interface IBadgeProps {
   label?: string;
   icon?: React.ReactNode;
 }

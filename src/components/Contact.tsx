@@ -1,18 +1,22 @@
 "use client";
 
-import { useClickOutside } from "@/hooks/useClickOutside";
-import { cn } from "@/utils";
+import { createContact } from "@/app/actions";
+import { zodResolver } from "@hookform/resolvers/zod";
 import {
   IconBrandGithub,
   IconBrandLinkedin,
   IconBrandThreads,
+  IconCheck,
   IconLayoutBottombarCollapse,
   IconLayoutBottombarExpand,
   IconSend,
 } from "@tabler/icons-react";
 import { AnimatePresence, motion } from "framer-motion";
-import { forwardRef, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 import { create } from "zustand";
+import { Input, TextArea } from "./form";
 
 // Defina a interface do estado da store
 interface StoreState {
@@ -33,56 +37,32 @@ const contactStore = create<StoreState>((set) => ({
     })),
 }));
 
-interface IInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  label: string;
-}
-interface ITextAreaProps
-  extends React.InputHTMLAttributes<HTMLTextAreaElement> {
-  label: string;
-}
+const formSchema = z.object({
+  name: z.string().min(2),
+  email: z.string().email(),
+  message: z.string().min(10),
+});
 
-const Input = forwardRef<HTMLInputElement, IInputProps>(
-  ({ label, className, ...props }, ref) => {
-    return (
-      <div className={cn("space-y-2", className)}>
-        <span className="text-gray-400">{label}</span>
-        <input
-          ref={ref}
-          className={cn(
-            "w-full bg-gray-100 p-4 focus:outline-neutral-800 rounded-md"
-          )}
-          {...props}
-        />
-      </div>
-    );
-  }
-);
-
-Input.displayName = "Input";
-
-const TextArea = forwardRef<HTMLTextAreaElement, ITextAreaProps>(
-  ({ label, className, ...props }, ref) => {
-    return (
-      <div className={cn("space-y-2", className)}>
-        <span className="text-gray-400">{label}</span>
-        <textarea
-          ref={ref}
-          rows={4}
-          className={cn(
-            "w-full bg-gray-100 p-2 focus:outline-neutral-800 rounded-md "
-          )}
-          {...props}
-        />
-      </div>
-    );
-  }
-);
-
-TextArea.displayName = "TextArea";
+type formType = z.infer<typeof formSchema>;
 
 export const Contact = () => {
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const { close, open, isOpen } = contactStore();
-  const ref = useClickOutside(close, ["mouseup", "touchend"]);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+
+    reset,
+  } = useForm<formType>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      message: "",
+    },
+  });
 
   useEffect(() => {
     if (isOpen) {
@@ -95,6 +75,14 @@ export const Contact = () => {
       document.body.style.overflow = "auto";
     };
   }, [isOpen]);
+
+  const onSubmit = async (data: formType) => {
+    await createContact(data.name, data.email, data.message);
+    setIsSubmitted(true);
+    reset();
+    // close();
+  };
+
   return (
     <>
       <button aria-label="Collapse Layout" onClick={open}>
@@ -114,10 +102,10 @@ export const Contact = () => {
 
             {/* Modal Content */}
             <motion.div
-              className="fixed inset-0 justify-center z-50 p-4"
-              initial={{ opacity: 0, y: "-100%" }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: "-100%" }}
+              className="fixed justify-center top-4 w-[98%] left-[50%] z-50"
+              initial={{ opacity: 0, y: "-100%", x: "-50%" }}
+              animate={{ opacity: 1, y: 0, x: "-50%" }}
+              exit={{ opacity: 0, y: "-100%", x: "-50%" }}
               transition={{
                 type: "spring",
                 stiffness: 300,
@@ -130,7 +118,6 @@ export const Contact = () => {
                 role="dialog"
                 aria-modal="true"
                 aria-labelledby="modal-title"
-                ref={ref}
               >
                 {/* Close Button */}
                 <button
@@ -147,7 +134,7 @@ export const Contact = () => {
                 </h1>
                 <div className="flex gap-2 my-8">
                   <a
-                    href="https://github.com/b"
+                    href="https://github.com/geniilsonfernandes"
                     className="p-2 border rounded-md gap-2 flex flex-col items-start hover:bg-gray-100"
                     aria-label="Visit GitHub profile of gefernandes"
                     target="_blank"
@@ -159,7 +146,7 @@ export const Contact = () => {
                     </div>
                   </a>
                   <a
-                    href="https://github.com/b"
+                    href="https://www.threads.net/@genilsonfernandes_"
                     className="p-2 border rounded-md gap-2 flex flex-col items-start hover:bg-gray-100"
                     aria-label="Visit threads profile of gefernandes"
                     target="_blank"
@@ -171,7 +158,7 @@ export const Contact = () => {
                     </div>
                   </a>
                   <a
-                    href="https://github.com/b"
+                    href="https://www.linkedin.com/in/genilson-fernandes-489870320/"
                     className="p-2 border rounded-md gap-2 flex flex-col items-start hover:bg-gray-100"
                     aria-label="Visit Linkedin profile of gefernandes"
                     target="_blank"
@@ -184,20 +171,46 @@ export const Contact = () => {
                   </a>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
-                  <Input label="Name" className="lg:col-span-1 col-span-2" />
-                  <Input label="Email" className="lg:col-span-1 col-span-2" />
-                  <TextArea label="Message" className="col-span-2" />
-                  <div className="col-span-2 flex justify-end">
+                <form
+                  className="grid grid-cols-2 gap-4"
+                  onSubmit={handleSubmit(onSubmit)}
+                >
+                  <Input
+                    label="Name"
+                    className="lg:col-span-1 col-span-2"
+                    {...register("name")}
+                    error={errors.name?.message}
+                  />
+                  <Input
+                    label="Email"
+                    className="lg:col-span-1 col-span-2"
+                    {...register("email")}
+                    error={errors.email?.message}
+                  />
+                  <TextArea
+                    label="Message"
+                    className="col-span-2"
+                    {...register("message")}
+                    error={errors.message?.message}
+                  />
+                  <div className="col-span-2 flex gap-2 justify-end">
+                    {isSubmitted && (
+                      <div className="text-green-500 flex gap-2 p-4 bg-green-100 border rounded-md border-green-200">
+                        <IconCheck size={18} stroke={1} />
+                        Message sent successfully!
+                      </div>
+                    )}
+
                     <button
                       type="submit"
-                      className="bg-neutral-800 hover:bg-neutral-600 text-white p-4 px-8 rounded-md inline-flex items-center gap-2"
+                      className="bg-neutral-800 hover:bg-neutral-600 text-white p-4  rounded-md inline-flex items-center gap-2"
                     >
                       <IconSend size={18} stroke={1} />
-                      Send
+
+                      {isSubmitting ? "..." : "Send"}
                     </button>
                   </div>
-                </div>
+                </form>
               </div>
             </motion.div>
           </>
@@ -206,4 +219,3 @@ export const Contact = () => {
     </>
   );
 };
-

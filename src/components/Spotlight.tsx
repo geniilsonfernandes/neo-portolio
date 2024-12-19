@@ -1,16 +1,16 @@
 "use client";
 
-import { useClickOutside } from "@/hooks/useClickOutside";
 import { useHotkeys } from "@/hooks/useHotkeys";
 import { cn } from "@/utils";
 import {
   IconAdjustments,
   IconAdjustmentsOff,
-  IconArrowBack,
   IconBlockquote,
   IconBriefcase,
   IconCaretDownFilled,
   IconCaretUpFilled,
+  IconExternalLink,
+  IconFolders,
   IconLink,
   IconPaperclip,
   IconSearch,
@@ -49,7 +49,7 @@ interface StoreState {
 
 // Crie a store usando a interface
 const spotlightStore = create<StoreState>((set) => ({
-  isOpen: true,
+  isOpen: false,
   query: "",
   category: "",
   showFilter: false,
@@ -58,21 +58,21 @@ const spotlightStore = create<StoreState>((set) => ({
   setCategory: (category) => set({ category }),
   open: () => set({ isOpen: true }),
   close: () => set({ isOpen: false }),
-  toggle: () =>
-    set((state) => ({
-      isOpen: !state.isOpen,
-    })),
+  toggle: () => {},
 }));
 
 interface ISpotlightButton extends React.HTMLAttributes<HTMLLIElement> {
   title: string;
   description?: string;
   variant?: "projects" | "articles" | "experience" | "links" | String;
+
+  value?: string;
+  icon?: React.ReactNode;
   selected?: boolean;
 }
 
 const SpotlightButton = forwardRef<HTMLLIElement, ISpotlightButton>(
-  (props, ref) => {
+  ({ icon, ...props }, ref) => {
     const { query } = spotlightStore();
 
     const icons = () => {
@@ -90,6 +90,21 @@ const SpotlightButton = forwardRef<HTMLLIElement, ISpotlightButton>(
       }
     };
 
+    const handleClick = () => {
+      window.open(props.value, "_blank");
+    };
+
+    useHotkeys([
+      {
+        keys: ["Enter"], // Cmd + Enter no macOS
+        callback: handleClick,
+      },
+      {
+        keys: ["Enter"], // Ctrl + Enter no Windows/Linux
+        callback: handleClick,
+      },
+    ]);
+
     return (
       <li
         ref={ref}
@@ -97,8 +112,12 @@ const SpotlightButton = forwardRef<HTMLLIElement, ISpotlightButton>(
           "flex gap-2 border-l-2 cursor-pointer items-center justify-between border-transparent px-4 py-2 w-full text-left focus:bg-slate-100 focus:outline-none  data-[selected=true]:bg-slate-100 data-[selected=true]:border-slate-900 focus:border-slate-900  data-[selected=true]:border-l-2 focus:border-l-2 relative"
         )}
         {...props}
+        onClick={handleClick}
       >
-        <div className="pr-2">{props.variant && icons()}</div>
+        <div className="pr-2">
+          {icon ? icon : null}
+          {!icon && props.variant && icons()}
+        </div>
         <div className="relative flex-1 ">
           <h3 className="text-sm font-medium ">{props.title}</h3>
           {props.description && (
@@ -107,8 +126,8 @@ const SpotlightButton = forwardRef<HTMLLIElement, ISpotlightButton>(
             </p>
           )}
         </div>
-        <div className="w-8 flex items-center justify-center">
-          <IconArrowBack size={18} stroke={1} />
+        <div className="w-8 flex items-center p-2 justify-center border hover:bg-slate-100 border-slate-300 rounded-md">
+          <IconExternalLink size={18} stroke={1} />
         </div>
       </li>
     );
@@ -117,14 +136,18 @@ const SpotlightButton = forwardRef<HTMLLIElement, ISpotlightButton>(
 
 SpotlightButton.displayName = "SpotlightButton";
 
+export interface ISpotlightOption {
+  id: string;
+  title: string;
+  description?: string;
+  value?: string;
+  icon?: React.ReactNode;
+  variant: "projects" | "articles" | "experience" | "links" | string;
+  onClick?: () => void;
+}
+
 interface ISpotlight {
-  data: {
-    id: string;
-    title: string;
-    description?: string;
-    variant: "projects" | "articles" | "experience" | "links" | string;
-    onClick?: () => void;
-  }[];
+  data: ISpotlightOption[];
 }
 
 export const Spotlight: React.FC<ISpotlight> = ({ data }) => {
@@ -140,7 +163,6 @@ export const Spotlight: React.FC<ISpotlight> = ({ data }) => {
     showFilter,
   } = spotlightStore();
 
-  const ref = useClickOutside(close, ["mouseup", "touchend"]);
   const buttonRefs = useRef<Record<string, HTMLLIElement>>({});
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -168,8 +190,11 @@ export const Spotlight: React.FC<ISpotlight> = ({ data }) => {
 
   useEffect(() => {
     if (isOpen) {
+      console.log(1);
+
       document.body.style.overflow = "hidden";
     } else {
+      console.log(2);
       document.body.style.overflow = "auto";
     }
 
@@ -187,6 +212,7 @@ export const Spotlight: React.FC<ISpotlight> = ({ data }) => {
       },
       { label: "Blog", value: "blog", icon: <IconBlockquote size={18} /> },
       { label: "Links", value: "link", icon: <IconLink size={18} /> },
+      { label: "Others", value: "others", icon: <IconFolders size={18} /> },
     ],
     []
   );
@@ -251,8 +277,6 @@ export const Spotlight: React.FC<ISpotlight> = ({ data }) => {
     const normalizedQuery = query?.toLowerCase().trim();
 
     const filtered = data.filter((item) => {
-      console.log(category);
-
       if (!normalizedQuery) return !category || item.variant === category;
 
       const isMatch =
@@ -275,8 +299,6 @@ export const Spotlight: React.FC<ISpotlight> = ({ data }) => {
     return reducePerVariant;
   }, [data, category, query]);
 
-  console.log(filteredData);
-
   return (
     <>
       <button aria-label="open spotlight" onClick={open}>
@@ -287,8 +309,8 @@ export const Spotlight: React.FC<ISpotlight> = ({ data }) => {
           <>
             {/* Backdrop */}
             <motion.div
-              className="fixed inset-0 bg-gray-500/30 backdrop-blur-sm z-40"
               onClick={close}
+              className="fixed inset-0 bg-gray-500/30 backdrop-blur-sm z-40"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -296,10 +318,10 @@ export const Spotlight: React.FC<ISpotlight> = ({ data }) => {
 
             {/* Modal Content */}
             <motion.div
-              className="fixed inset-0 justify-center z-50 p-4 flex items-center"
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.4 }}
+              className="fixed top-[50%] left-[50%] w-11/12 lg:w-8/12 z-50 "
+              initial={{ opacity: 0, y: "-100%", x: "-50%" }}
+              animate={{ opacity: 1, y: "-50%", x: "-50%" }}
+              exit={{ opacity: 0, y: "-100%", x: "-50%" }}
               onKeyDown={handleKeyDown}
               transition={{
                 type: "spring",
@@ -309,11 +331,10 @@ export const Spotlight: React.FC<ISpotlight> = ({ data }) => {
               }}
             >
               <div
-                className="bg-white rounded-lg border w-2/4 relative"
+                className="rounded-lg border w-full h-full relative bg-white "
                 role="dialog"
                 aria-modal="true"
                 aria-labelledby="modal-title"
-                ref={ref}
               >
                 <div className="p-4 flex items-center gap-4 border-b">
                   <span className="w-4 h-4">
@@ -339,7 +360,7 @@ export const Spotlight: React.FC<ISpotlight> = ({ data }) => {
                   />
 
                   {query && (
-                    <button className="absolute right-16 text-slate-500 p-2 bg-slate-100 rounded-full">
+                    <button className="text-slate-500 p-2 bg-slate-100 rounded-full">
                       <IconX size={18} stroke={1} onClick={clearQuery} />
                     </button>
                   )}
@@ -354,6 +375,13 @@ export const Spotlight: React.FC<ISpotlight> = ({ data }) => {
                     ) : (
                       <IconAdjustments size={18} />
                     )}
+                  </button>
+
+                  <button
+                    className="text-slate-500 p-2 border rounded-full hover:bg-slate-100"
+                    onClick={close}
+                  >
+                    <IconX size={18} stroke={1} onClick={clearQuery} />
                   </button>
                 </div>
 
@@ -403,7 +431,9 @@ export const Spotlight: React.FC<ISpotlight> = ({ data }) => {
                             title={item.title}
                             description={item.description}
                             variant={item.variant}
+                            value={item.value}
                             data-index={item.id}
+                            icon={item.icon}
                             onMouseOver={() =>
                               updateSelected(indexPrevPosition.current, item.id)
                             }
@@ -416,7 +446,7 @@ export const Spotlight: React.FC<ISpotlight> = ({ data }) => {
                   ))}
                 </div>
                 <div
-                  className="bg-gray-50 p-4 rounded-b-lg border-t"
+                  className="bg-gray-50 p-4 rounded-b-lg border-t flex justify-between items-center"
                   aria-labelledby="spotlight-footer"
                 >
                   <div className="flex gap-1 items-center">
@@ -430,6 +460,9 @@ export const Spotlight: React.FC<ISpotlight> = ({ data }) => {
                       To Navigate
                     </span>
                   </div>
+                  <span className="text-sm text-slate-500 ml-2">
+                    Press <b>esc</b> to close
+                  </span>
                 </div>
               </div>
             </motion.div>

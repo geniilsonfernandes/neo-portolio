@@ -1,3 +1,5 @@
+"use client";
+
 import { IconCalendar } from "@tabler/icons-react";
 
 export type JobProps = {
@@ -14,11 +16,11 @@ export type JobProps = {
 
 const Job = ({ company, job, period }: JobProps) => {
   return (
-    <div className="border p-2  bg-white rounded-md w-full">
+    <div className="border p-2  bg-white rounded-md w-full overflow-hidden">
       <h3 className="text-md ">
         {job} <span className="text-neutral-400 text-sm"> - {company} </span>
       </h3>
-      <span className="text-sm inline-flex gap-2 mt-1">
+      <span className="text-sm text-slate-600 inline-flex gap-2 mt-1">
         <IconCalendar size={18} stroke={1} /> {period}
       </span>
     </div>
