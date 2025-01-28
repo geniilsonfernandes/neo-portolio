@@ -11,16 +11,14 @@ export const getProjects = async (): Promise<IProject[]> => {
       database_id: "1618d3b7-8a16-80d2-bc23-e8b6a53afc84",
     });
 
-    // Valida e normaliza os dados retornados
     if (!response.results || !Array.isArray(response.results)) {
       throw new Error("Invalid response format from Notion API.");
     }
 
-    // Mapeia os resultados para o formato esperado
     return response.results.map((project: any) => normalizeData(project));
   } catch (error) {
     console.error("Failed to fetch projects:", error);
-    throw error; // Repassa o erro para que possa ser tratado no chamador
+    throw error;
   }
 };
 

@@ -62,7 +62,7 @@ const jobs = [
   {
     company: "Spotx",
     job: "Front-end Software Engineer",
-    period: "Mar 2024 - ....",
+    period: "jan 2024 - Dec 2024 · 1 year",
     description: {
       pt: [
         "Como Desenvolvedor Fullstack, trabalho na equipe responsável pelo desenvolvimento do produto de gestão de frete, utilizando tecnologias como Node.js para o backend e React.js para o aplicativo web.",

@@ -7,77 +7,55 @@ import { FrontEndSection } from "@/components/FrontEndSection";
 import { GraduationSection } from "@/components/GraduationSection";
 import Job from "@/components/Job";
 import { LanguagesSection } from "@/components/LanguagesSection";
+import { IProject } from "@/components/ProjectCard";
 import { ProjectsSection } from "@/components/ProjectsSection";
 import { Section } from "@/components/Section";
-import { ISpotlightOption, Spotlight } from "@/components/Spotlight";
 import { TestingSection } from "@/components/TestingSection";
-import {
-  IconBrandGithub,
-  IconBrandInstagram,
-  IconBrandLinkedin,
-  IconBrandThreads,
-  IconCode,
-  IconFileTypeDocx,
-} from "@tabler/icons-react";
 import { Header } from "../components/Header";
-import { getProjects } from "./actions";
+
+export const projects = [
+  {
+    id: "1618d3b7-8a16-80d2-bc23-e8b6a53afc84",
+    title: "Pango | Shopping List",
+    description: `Pango is a shopping list application designed to simplify your shopping experience. With Pango, users can:
+Create, edit, and manage their shopping lists.
+Share lists with other users for collaborative shopping.
+Explore and view public lists shared by other users.
+Whether you're planning your weekly groceries or organizing a group shopping trip, Pango helps you stay on track.`,
+    demo: "https://pangolist.netlify.app/",
+    github: "https://github.com/geniilsonfernandes/pango-front-end",
+    technologies: ["Nodejs", "React", "Tailwind", "TypeScript"],
+  },
+  {
+    id: "9c1c6f9aADADADbc23-e8b6a53afc84",
+    title: "Just Travel | Front end",
+    description: `Just Travel is a web application that allows users to plan and manage their travel experiences`,
+    demo: "https://just-travel-tau.vercel.app/",
+    github: "https://github.com/geniilsonfernandes/just-travel",
+    storybook:
+      "https://65cbede3c9638330bc52e843--dreamy-shortbread-14a8ff.netlify.app/",
+    technologies: ["Nextjs", "React", "Tailwind", "TypeScript"],
+  },
+  {
+    id: "9c1c6f9a-8aDASD3-e8b6a53afc84",
+    title: "Money Guard | Front end",
+    description: `Money Guard is a financial management app focused on monthly budgeting, setting goals, and centering around the user’s salary. With it, users can efficiently track their income, set objectives, and save their hard-earned money.`,
+    demo: "https://moneyguard.netlify.app/",
+    github: "https://github.com/geniilsonfernandes/moneyguard",
+    technologies: ["React", "Tailwind", "TypeScript", "Nodejs"],
+  },
+  {
+    id: "9c1c6f9aePaper | Frontend",
+    title: "ePaper | Frontend",
+    description: `This project was developed as part of a practical test for a selection process. The goal was to build a frontend application efficiently while adhering to development best practices, with a focus on performance optimization and compliance with the proposed design.`,
+    demo: "https://e-paper-teste-front-end.vercel.app/",
+    youtube: "https://www.youtube.com/embed/CVMx3trycY0?si=I9t4fpuCabmI1Km4",
+    github: "https://github.com/geniilsonfernandes/e-paper-teste-front-end",
+    technologies: ["React", "Tailwind", "TypeScript", "Nextjs"],
+  },
+] as IProject[];
 
 export default async function Home() {
-  const projects = await getProjects();
-
-  const spotlight: ISpotlightOption[] = [
-    ...projects?.map((project) => ({
-      id: project.id,
-      title: project.title || "",
-      description: project.description || "",
-      variant: "projects",
-      value: project.demo,
-    })),
-    {
-      id: "threads",
-      title: "Threads",
-      variant: "link",
-      icon: <IconBrandThreads size={18} stroke={1} />,
-      value: "https://threads.net/@gefernandes",
-    },
-    {
-      id: "github",
-      title: "Github",
-      variant: "link",
-      icon: <IconBrandGithub size={18} stroke={1} />,
-      value: "https://github.com/geniilsonfernandes",
-    },
-    {
-      id: "linkedin",
-      title: "Linkedin",
-      variant: "link",
-      icon: <IconBrandLinkedin size={18} stroke={1} />,
-      value: "https://www.linkedin.com/in/genilson-fernandes-489870320/",
-    },
-    {
-      id: "instagram",
-      title: "Instagram",
-      variant: "link",
-      icon: <IconBrandInstagram size={18} stroke={1} />,
-      value: "https://www.instagram.com/genilsonfernandes_",
-    },
-    {
-      id: "devto",
-      title: "Dev.to",
-      variant: "link",
-      icon: <IconCode size={18} stroke={1} />,
-      value: "https://dev.to/geniilsonfernandes",
-    },
-    {
-      id: "cv",
-      title: "CV",
-      variant: "others",
-      icon: <IconFileTypeDocx size={18} stroke={1} />,
-      value:
-        "https://docs.google.com/document/d/e/2PACX-1vR_6I_IYYlFP8xZFukZJP5t0rTY19XRm55AjyOde9h0kBCvZ-FUbjCy3Qfo7gmBc8NeymdRcwbKaZmt/pub",
-    },
-  ];
-
   return (
     <div className="flex lg:flex-row flex-col">
       <aside
@@ -85,7 +63,6 @@ export default async function Home() {
         aria-label="Main Header"
       >
         <header className="flex items-center justify-between border rounded-md bg-white p-4 mb-4 lg:hidden">
-          <Spotlight data={spotlight} />
           <Contact />
         </header>
         <Header />
@@ -93,7 +70,6 @@ export default async function Home() {
 
       <main className="px-4 py-8">
         <header className="items-center justify-between border rounded-md bg-white p-4 hidden lg:flex sticky top-8 z-50">
-          <Spotlight data={spotlight} />
           <Contact />
         </header>
 

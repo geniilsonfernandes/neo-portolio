@@ -7,7 +7,6 @@ import {
   IconExternalLink,
 } from "@tabler/icons-react";
 import { forwardRef, useState } from "react";
-import { Like } from "./Like";
 import { IconType, techsIcons } from "./techIcons";
 
 export interface IProject {
@@ -95,7 +94,7 @@ export const ProjectCard = forwardRef<HTMLDivElement, IProjectCard>(
               ))}
             </ul>
             <div className="flex gap-2">
-              <Like initialLikes={likesCount} onLike={handleLike} />
+              {/* <Like initialLikes={likesCount} onLike={handleLike} /> */}
               {demo && (
                 <ExternalIconButton
                   href={demo}
