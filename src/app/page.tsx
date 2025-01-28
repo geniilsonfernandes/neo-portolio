@@ -13,7 +13,7 @@ import { Section } from "@/components/Section";
 import { TestingSection } from "@/components/TestingSection";
 import { Header } from "../components/Header";
 
-export const projects = [
+const projects = [
   {
     id: "1618d3b7-8a16-80d2-bc23-e8b6a53afc84",
     title: "Pango | Shopping List",
