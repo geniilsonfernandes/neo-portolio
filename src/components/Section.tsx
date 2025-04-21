@@ -12,9 +12,9 @@ export const Section: React.FC<SectionProps> = ({
 }) => {
   return (
     <section id={id} {...props}>
-      <h3 id={`${id}-title`} className="font-bold my-6 text-lg">
+      <h2 id={`${id}-title`} className="font-bold my-6 text-2xl text-slate-400">
         {title}
-      </h3>
+      </h2>
       {children}
     </section>
   );

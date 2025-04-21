@@ -1,11 +1,12 @@
 import {
+  IconBrandAndroid,
   IconBrandCss3,
+  IconBrandFlutter,
   IconBrandHtml5,
   IconBrandNextjs,
   IconBrandReact,
   IconBrandReactNative,
   IconBrandRedux,
-  IconBrandStorybook,
   IconBrandTailwind,
   IconBrandVite,
 } from "@tabler/icons-react";
@@ -20,6 +21,14 @@ export const FrontEndSection: React.FC = () => {
     {
       label: "React Native",
       icon: <IconBrandReactNative size={18} stroke={1} />,
+    },
+    {
+      label: "Android",
+      icon: <IconBrandAndroid size={18} stroke={1} />,
+    },
+    {
+      label: "Flutter",
+      icon: <IconBrandFlutter size={18} stroke={1} />,
     },
     {
       label: "Next.js",
@@ -50,10 +59,6 @@ export const FrontEndSection: React.FC = () => {
       icon: <IconBrandRedux size={18} stroke={1} />,
     },
     {
-      label: "Stotybook",
-      icon: <IconBrandStorybook size={18} stroke={1} />,
-    },
-    {
       label: "Vite",
       icon: <IconBrandVite size={18} stroke={1} />,
     },
@@ -65,7 +70,7 @@ export const FrontEndSection: React.FC = () => {
       className="space-y-4 my-8"
       aria-labelledby="front-end-technologies"
     >
-      <h2 className="font-bold my-4">Front-end Technologies</h2>
+      <h2 className="font-bold my-4 text-slate-500">Front-end Technologies</h2>
       <ul className="flex gap-2 flex-wrap list-none">
         {technologies.map((tech, i) => (
           <li key={i}>

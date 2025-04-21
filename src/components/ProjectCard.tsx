@@ -1,20 +1,17 @@
 import { likeProject } from "@/app/actions";
 import { cn } from "@/utils";
-import {
-  IconBrandGithub,
-  IconBrandStorybook,
-  IconBrandYoutube,
-  IconExternalLink,
-} from "@tabler/icons-react";
+import { IconExternalLink } from "@tabler/icons-react";
+import Image from "next/image";
 import { forwardRef, useState } from "react";
-import { IconType, techsIcons } from "./techIcons";
 
 export interface IProject {
   id: string;
   title?: string;
   description?: string;
+  short_description?: string;
   technologies?: string[];
   demo?: string;
+  icon?: string;
   github?: string;
   youtube?: string;
   storybook?: string;
@@ -54,9 +51,11 @@ export const ProjectCard = forwardRef<HTMLDivElement, IProjectCard>(
         description = "",
         demo,
         github,
+        icon,
         youtube,
         storybook,
         technologies,
+        short_description,
         likes,
       },
       ...props
@@ -79,80 +78,34 @@ export const ProjectCard = forwardRef<HTMLDivElement, IProjectCard>(
       <article
         ref={ref}
         className={cn(
-          "font-bold flex flex-col gap-4 justify-between p-4 border border-gray-200 bg-white flex-1 rounded-md hover:scale-[1.05] transition-all relative",
+          "p-4 bg-white flex-1 rounded-md relative cursor-pointer hover:scale-[1.01] border boder-slate-200 hover:border-slate-300 transition-all duration-200 ease-in-out group/card",
           className
         )}
         aria-labelledby={`project-title-${title}`}
         aria-describedby={`project-description-${title}`}
         {...props}
       >
-        <header className="flex flex-col gap-2">
-          <div className="flex items-center justify-between">
-            <ul className="flex gap-1 flex-wrap" aria-label="Technologies used">
-              {technologies?.map((tech) => (
-                <li key={tech}>{techsIcons[tech as IconType] ?? null}</li>
-              ))}
-            </ul>
-            <div className="flex gap-2">
-              {/* <Like initialLikes={likesCount} onLike={handleLike} /> */}
-              {demo && (
-                <ExternalIconButton
-                  href={demo}
-                  aria-label="Open demotration"
-                  tabIndex={0}
-                >
-                  <IconExternalLink size={18} stroke={1} /> Demo
-                </ExternalIconButton>
-              )}
-            </div>
-          </div>
-          <h3 id={`project-title-${title}`} className="font-bold text-lg mt-2">
-            {title}
-          </h3>
-        </header>
+        <IconExternalLink
+          stroke={1.5}
+          className="group-hover/card:text-slate-400 absolute top-3 right-3 group-hover/card:top-2 group-hover/card:right-2 text-slate-100 hover:text-slate-900 transition-all duration-500 ease-in-out"
+        />
+        <Image
+          src={icon || ""}
+          alt="Genilson Fernandes"
+          width={40}
+          height={40}
+          className="rounded-md shadow-sm"
+        />
+
+        <h3 id={`project-title-${title}`} className="font-bold text-lg mt-2">
+          {title}
+        </h3>
         <p
           id={`project-description-${title}`}
-          className="font-light text-sm text-neutral-600"
+          className="text-sm text-slate-500 "
         >
-          {shortDescription}
+          {short_description}
         </p>
-        <footer>
-          <ul className="flex gap-2 flex-wrap" aria-label="Project links">
-            {github && (
-              <li>
-                <ExternalIconButton
-                  href={github}
-                  aria-label="Open GitHub"
-                  tabIndex={0}
-                >
-                  <IconBrandGithub size={18} stroke={1} /> GitHub
-                </ExternalIconButton>
-              </li>
-            )}
-            {youtube && (
-              <li>
-                <ExternalIconButton
-                  href={youtube}
-                  aria-label="Open YouTube"
-                  tabIndex={0}
-                >
-                  <IconBrandYoutube size={18} stroke={1} /> YouTube
-                </ExternalIconButton>
-              </li>
-            )}
-            {storybook && (
-              <li>
-                <ExternalIconButton
-                  href={storybook}
-                  aria-label="Open Storybook"
-                  tabIndex={0}
-                >
-                  <IconBrandStorybook size={18} stroke={1} /> Storybook
-                </ExternalIconButton>
-              </li>
-            )}
-          </ul>
-        </footer>
       </article>
     );
   }

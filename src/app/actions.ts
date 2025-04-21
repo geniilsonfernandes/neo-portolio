@@ -2,7 +2,7 @@
 
 import { IProject } from "@/components/ProjectCard";
 import { notion } from "@/lib/notion";
-import { normalizeData } from "@/utils";
+import { normalizeData, normalizePageContent } from "@/utils";
 
 export const getProjects = async (): Promise<IProject[]> => {
   try {
@@ -18,6 +18,29 @@ export const getProjects = async (): Promise<IProject[]> => {
     return response.results.map((project: any) => normalizeData(project));
   } catch (error) {
     console.error("Failed to fetch projects:", error);
+    throw error;
+  }
+};
+
+export const getProject = async (id: string): Promise<IProject> => {
+  try {
+    const response = await notion.pages.retrieve({ page_id: id });
+    return normalizeData(response);
+  } catch (error) {
+    console.error("Failed to fetch project:", error);
+    throw error;
+  }
+};
+
+export const getPageContent = async (pageId: string) => {
+  try {
+    const response = await notion.blocks.children.list({
+      block_id: pageId,
+    });
+
+    return normalizePageContent(response);
+  } catch (error) {
+    console.error("Failed to fetch page content:", error);
     throw error;
   }
 };

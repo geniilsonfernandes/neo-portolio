@@ -6,7 +6,7 @@ interface IBadgeProps {
 export const Badge: React.FC<IBadgeProps> = ({ label, icon, ...props }) => {
   return (
     <div
-      className="flex justify-between bg-white items-center gap-2 p-2 border border-gray-200 rounded-md hover:bg-gray-100 transition-all"
+      className="rounded-full bg-gray-100 px-3 py-1 text-sm flex items-center gap-1"
       {...props}
     >
       {icon}

@@ -1,11 +1,10 @@
 "use client";
 
-import { cn } from "@/utils";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
+import Link from "next/link";
 import { useMemo, useState } from "react";
 import { IProject, ProjectCard } from "./ProjectCard";
 import { Section } from "./Section";
-import { IconType, techsIcons } from "./techIcons";
 
 interface IProjectsSection {
   data?: IProject[];
@@ -46,8 +45,13 @@ export const ProjectsSection: React.FC<IProjectsSection> = ({ data }) => {
   }, [selectedTechs, data]);
 
   return (
-    <Section title="Projects" id="projects" aria-labelledby="projects">
-      <span className="font-bold text-sm text-gray-700">Filter by tech:</span>
+    <Section
+      className="mt-16"
+      title="Projects"
+      id="projects"
+      aria-labelledby="projects"
+    >
+      {/* <span className="font-bold text-sm text-gray-700">Filter by tech:</span>
       <div className="flex items-center gap-2 mt-4">
         {techs.map((tech, i) => (
           <button
@@ -67,26 +71,13 @@ export const ProjectsSection: React.FC<IProjectsSection> = ({ data }) => {
             {techsIcons[tech as IconType] ?? tech}
           </button>
         ))}
-      </div>
-      <div className=" gap-4 group mt-4 grid grid-cols-1 lg:grid-cols-2">
+      </div> */}
+      <div className=" gap-4 group mt-4 grid grid-cols-1 sm:grid-cols-2 ">
         <AnimatePresence>
           {projectMatchesTechs.map((project, i) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 20 }}
-            >
-              <ProjectCard
-                onMouseEnter={() => setHoveredIndex(i)}
-                onMouseLeave={() => setHoveredIndex(null)}
-                className={cn({
-                  "opacity-50 blur-[2px]":
-                    i !== hoveredIndex && hoveredIndex !== null,
-                })}
-                project={project}
-              />
-            </motion.div>
+            <Link href={`/project/${project.id}`} key={project.id}>
+              <ProjectCard project={project} />
+            </Link>
           ))}
         </AnimatePresence>
       </div>

@@ -3,6 +3,7 @@ import { getLocale, getMessages } from "next-intl/server";
 import { Inria_Sans } from "next/font/google";
 import "./globals.css";
 
+import { Footer } from "@/components/Footer";
 import { NextIntlClientProvider } from "next-intl";
 
 const inria = Inria_Sans({
@@ -36,6 +37,7 @@ export default async function RootLayout({
       <body className={`${inria.className} bg-gray-50 `}>
         <NextIntlClientProvider messages={messages}>
           {children}
+          <Footer />
         </NextIntlClientProvider>
       </body>
     </html>

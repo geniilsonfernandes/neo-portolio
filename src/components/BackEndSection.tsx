@@ -51,7 +51,7 @@ export const BackEndSection: React.FC = () => {
       className="space-y-4 my-8"
       aria-labelledby="languages"
     >
-      <h2 className="font-bold my-4">Back-end</h2>
+      <h2 className="font-bold my-4 text-slate-500">Back-end</h2>
       <ul className="flex gap-2 flex-wrap list-none">
         {technologies.map((tech, i) => (
           <li key={i}>

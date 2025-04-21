@@ -32,7 +32,7 @@ export const TestingSection: React.FC = () => {
       className="space-y-4 my-8"
       aria-labelledby="testing-technologies"
     >
-      <h2 className="font-bold my-4">Testing</h2>
+      <h2 className="font-bold my-4 text-slate-500">Testing</h2>
       <ul className="flex gap-2 flex-wrap list-none">
         {technologies.map((tech, i) => (
           <li key={i}>
