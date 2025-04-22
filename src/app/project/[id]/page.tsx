@@ -55,7 +55,10 @@ export default async function Page({
           </p>
           <div className="flex flex-wrap gap-2">
             {data.technologies?.map((tech, i) => (
-              <div className="rounded-full bg-gray-100 px-3 py-1 text-sm">
+              <div
+                key={tech}
+                className="rounded-full bg-gray-100 px-3 py-1 text-sm"
+              >
                 {tech}
               </div>
             ))}
@@ -108,6 +111,7 @@ export default async function Page({
           }
           if (item.type === "image") {
             return (
+              // eslint-disable-next-line @next/next/no-img-element
               <img
                 src={item.url}
                 alt={item.text}
