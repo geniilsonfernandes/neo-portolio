@@ -16,6 +16,7 @@ export interface IProject {
   youtube?: string;
   storybook?: string;
   likes?: number;
+  cover?: string;
 }
 
 interface IProjectCard extends React.HTMLAttributes<HTMLDivElement> {
@@ -57,6 +58,7 @@ export const ProjectCard = forwardRef<HTMLDivElement, IProjectCard>(
         technologies,
         short_description,
         likes,
+        cover,
       },
       ...props
     },
@@ -89,13 +91,23 @@ export const ProjectCard = forwardRef<HTMLDivElement, IProjectCard>(
           stroke={1.5}
           className="group-hover/card:text-slate-400 absolute top-3 right-3 group-hover/card:top-2 group-hover/card:right-2 text-slate-100 hover:text-slate-900 transition-all duration-500 ease-in-out"
         />
-        <Image
-          src={icon || ""}
-          alt="Genilson Fernandes"
-          width={40}
-          height={40}
-          className="rounded-md shadow-sm"
-        />
+        {cover && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={cover || ""}
+            alt="Genilson Fernandes"
+            className="rounded-md shadow-sm object-cover w-full h-40"
+          />
+        )}
+        {!cover && icon && (
+          <Image
+            src={icon || ""}
+            alt="Genilson Fernandes"
+            width={40}
+            height={40}
+            className="rounded-md shadow-sm"
+          />
+        )}
 
         <h3 id={`project-title-${title}`} className="font-bold text-lg mt-2">
           {title}

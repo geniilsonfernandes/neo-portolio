@@ -3,7 +3,11 @@ import { IconArrowNarrowLeft, IconExternalLink } from "@tabler/icons-react";
 import { Metadata } from "next";
 import Link from "next/link";
 
-export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: { id: string };
+}): Promise<Metadata> {
   const data = await getProject(params.id);
 
   return {
@@ -38,6 +42,13 @@ export default async function Page({
   const { id } = await params;
   const data = await getProject(id);
   const cont = await getPageContent(id);
+
+  const getYTubeId = (url: string) => {
+    const regExp =
+      /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+    const match = url.match(regExp);
+    return match && match[7].length === 11 ? match[7] : false;
+  };
   return (
     <>
       <header className="container mx-auto mt-24">
@@ -82,10 +93,35 @@ export default async function Page({
                 Demo <IconExternalLink size={16} />
               </a>
             )}
+            {data.youtube && (
+              <a
+                href={data.youtube}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-xs font-normal border p-1 px-2 rounded-md hover:bg-gray-100"
+              >
+                youtube <IconExternalLink size={16} />
+              </a>
+            )}
           </div>
         </div>
       </header>
+
       <main className="container mx-auto ">
+        {data.youtube && (
+          <iframe
+            width="100%"
+            className="rounded-md overflow-hidden"
+            height="315"
+            src={`https://www.youtube.com/embed/${getYTubeId(
+              data.youtube || ""
+            )}`}
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+          ></iframe>
+        )}
+
         <hr className="my-8" />
         {cont.map((item) => {
           if (item.type === "heading_1") {
@@ -125,4 +161,3 @@ export default async function Page({
     </>
   );
 }
-

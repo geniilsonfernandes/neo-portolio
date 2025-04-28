@@ -47,6 +47,13 @@ export default async function Home() {
     <div className="container mx-auto">
       <Header />
       <ProjectsSection data={data} />
+
+      <Section title="My Technologies and tools" id="technologies">
+        <LanguagesSection />
+        <FrontEndSection />
+        <BackEndSection />
+        <TestingSection />
+      </Section>
       <Section title="Experience" id="experience">
         <div className="space-y-2">
           {jobs && jobs.map((job, i) => <Job key={i} {...job} />)}
@@ -54,12 +61,6 @@ export default async function Home() {
       </Section>
       <Section title="Graduation and Courses" id="graduation-and-courses">
         <GraduationSection />
-      </Section>
-      <Section title="My Technologies and tools" id="technologies">
-        <LanguagesSection />
-        <FrontEndSection />
-        <BackEndSection />
-        <TestingSection />
       </Section>
     </div>
   );

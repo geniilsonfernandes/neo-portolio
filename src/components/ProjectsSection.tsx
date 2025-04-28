@@ -14,22 +14,6 @@ export const ProjectsSection: React.FC<IProjectsSection> = ({ data }) => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [selectedTechs, setSelectedTechs] = useState<string[]>([]);
 
-  const techs = useMemo(() => {
-    const allTechnologies =
-      data?.flatMap((project) => project.technologies ?? []) ?? [];
-
-    const techSet: Record<string, boolean> = {};
-    const uniqueTechs: string[] = [];
-
-    for (const tech of allTechnologies) {
-      if (!techSet[tech]) {
-        uniqueTechs.push(tech);
-        techSet[tech] = true; // Marca a tecnologia como já vista
-      }
-    }
-
-    return uniqueTechs;
-  }, [data]);
 
   const projectMatchesTechs = useMemo(() => {
     return (
