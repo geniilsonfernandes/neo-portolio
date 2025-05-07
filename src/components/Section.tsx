@@ -1,4 +1,9 @@
-interface SectionProps extends React.HTMLAttributes<HTMLDivElement> {
+"use client";
+
+import { HTMLMotionProps, motion } from "framer-motion";
+import React from "react";
+
+interface SectionProps extends HTMLMotionProps<"section"> {
   children: React.ReactNode;
   title: string;
   id: string;
@@ -11,11 +16,16 @@ export const Section: React.FC<SectionProps> = ({
   ...props
 }) => {
   return (
-    <section id={id} {...props}>
-      <h2 id={`${id}-title`} className="font-bold my-6 text-2xl text-slate-400">
-        {title}
-      </h2>
+    <motion.section id={id} aria-labelledby={`${id}-title`} {...props}>
+      <div>
+        <h2
+          id={`${id}-title`}
+          className="font-normal my-6 text-2xl text-slate-700 dark:text-white "
+        >
+          {title}
+        </h2>
+      </div>
       {children}
-    </section>
+    </motion.section>
   );
 };

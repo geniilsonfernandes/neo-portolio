@@ -5,44 +5,50 @@ import {
   IconBrandLinkedin,
   IconCode,
 } from "@tabler/icons-react";
-import { useTranslations } from "next-intl";
 import Image from "next/image";
 
-export const Header = () => {
-  const t = useTranslations("header");
+import { motion } from "framer-motion";
 
+export const Header = () => {
   return (
-    <header className="mt-16">
+    <section className="mt-16">
       <Image
         src="/cover.png"
         alt="Ge Fernandes profile image"
-        className="rounded-xl border-2 shadow-lg border-white object-cover"
+        className="rounded-xl border-2 shadow-lg border-white object-cover animate-fade-up animate-once animate-delay-100 animate-ease-in-out"
         width={64}
         height={64}
       />
+
       <h1
         id="header-info"
-        className="text-4xl text-slate-900 font-bold leading-9 my-4"
+        className="text-4xl text-slate-900 dark:text-white font-bold leading-9 my-4 animate-fade-up animate-once animate-delay-200 animate-ease-in-out"
       >
-        Ge | Desenvolvedor Full Stack
+        Ge | Full Stack Developer
       </h1>
 
-      <p className="text-xl text-slate-500 font-normal max-w-sm">
-        Front-end developer who loves turning ideas into clean, usable
-        interfaces.
+      <p className="text-md font-light text-slate-500 dark:text-white/70 leading-6 tracking-wider animate-fade-up animate-once animate-delay-300 animate-ease-in-out">
+        Frontend Developer with a background in design, passionate about turning
+        ideas into memorable digital experiences. I strive to combine aesthetics
+        and functionality to craft interfaces that both delight and deliver.
       </p>
 
-      <nav
+      <p className="text-md mt-4 font-light text-slate-500 dark:text-white/70 leading-6 tracking-wider animate-fade-up animate-once animate-delay-[400ms] animate-ease-in-out">
+        With a focus on responsive design and accessibility, I ensure that every
+        project I work on is both user-friendly and scalable.
+      </p>
+      <motion.nav
         aria-label="Social media links"
-        className="flex flex-1 gap-4 mt-6 text-slate-500"
+        className="flex flex-1 gap-4 mt-6 animate-fade-up animate-once animate-delay-500 animate-ease-in-out"
       >
         <a
           href="https://github.com/geniilsonfernandes"
           target="_blank"
           title="Github"
           aria-label="Github profile"
+          className="text-slate-500 dark:text-midnight-50 hover:text-slate-900 dark:hover:text-white transition-all duration-200 ease-in-out"
         >
-          <IconBrandGithub />
+          <IconBrandGithub strokeWidth={1.5} />
         </a>
 
         <a
@@ -50,18 +56,21 @@ export const Header = () => {
           target="_blank"
           title="LinkedIn"
           aria-label="LinkedIn profile"
+          className="text-slate-500 dark:text-midnight-50 hover:text-slate-900 dark:hover:text-white transition-all duration-200 ease-in-out"
         >
-          <IconBrandLinkedin />
+          <IconBrandLinkedin strokeWidth={1.5} />
         </a>
+
         <a
           href="https://dev.to/geniilsonfernandes"
           target="_blank"
           title="Dev.to"
           aria-label="Dev.to profile"
+          className="text-slate-500 dark:text-midnight-50 hover:text-slate-900 dark:hover:text-white transition-all duration-200 ease-in-out"
         >
-          <IconCode />
+          <IconCode strokeWidth={1.5} />
         </a>
-      </nav>
-    </header>
+      </motion.nav>
+    </section>
   );
 };

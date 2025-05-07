@@ -1,15 +1,19 @@
 import { jobs } from "@/cms";
-import { BackEndSection } from "@/components/BackEndSection";
-import { FrontEndSection } from "@/components/FrontEndSection";
 import { GraduationSection } from "@/components/GraduationSection";
 import Job from "@/components/Job";
-import { LanguagesSection } from "@/components/LanguagesSection";
-import { ProjectsSection } from "@/components/ProjectsSection";
+import { ProjectsGrid } from "@/components/ProjectsGrid";
 import { Section } from "@/components/Section";
-import { TestingSection } from "@/components/TestingSection";
 import { Metadata } from "next";
 import { Header } from "../components/Header";
 import { getProjects } from "./actions";
+
+import {
+  BackEndTechnologies,
+  FrontEndTechnologies,
+  technologies,
+  TestingTechnologies,
+} from "@/cms/data";
+import { BadgeGroup } from "@/components/BadgeGroup";
 
 export const metadata: Metadata = {
   title: "Ge | Desenvolvedor Full Stack",
@@ -46,13 +50,44 @@ export default async function Home() {
   return (
     <div className="container mx-auto">
       <Header />
-      <ProjectsSection data={data} />
 
-      <Section title="My Technologies and tools" id="technologies">
-        <LanguagesSection />
-        <FrontEndSection />
-        <BackEndSection />
-        <TestingSection />
+      <Section
+        className="mt-16 animate-fade-up animate-once animate-delay-300 animate-ease-in-out"
+        title="Projects"
+        id="projects"
+        aria-labelledby="projects"
+      >
+        <ProjectsGrid data={data} />
+      </Section>
+
+      <Section
+        className="mt-16"
+        title="My Technologies and tools"
+        id="technologies"
+        initial={{ opacity: 0, x: -40 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.5, ease: "easeInOut", delay: 0.2 }}
+      >
+        <BadgeGroup
+          id="technologies"
+          title="Technologies Used"
+          items={technologies}
+        />
+        <BadgeGroup
+          id="front-end-technologies"
+          title="Front-end Technologies"
+          items={FrontEndTechnologies}
+        />
+        <BadgeGroup
+          id="back-end-technologies"
+          title="Back-end Technologies"
+          items={BackEndTechnologies}
+        />
+        <BadgeGroup
+          id="testing-technologies"
+          title="Testing Technologies"
+          items={TestingTechnologies}
+        />
       </Section>
       <Section title="Experience" id="experience">
         <div className="space-y-2">

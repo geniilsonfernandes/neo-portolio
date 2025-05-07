@@ -26,6 +26,7 @@ export function normalizeData(data: any) {
     ),
     likes: properties.likes.number,
     cover: properties.cover.url,
+    sub_cover: properties.sub_cover.url,
   };
 }
 
