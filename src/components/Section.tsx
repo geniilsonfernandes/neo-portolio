@@ -1,12 +1,9 @@
-"use client";
-
-import { HTMLMotionProps, motion } from "framer-motion";
 import React from "react";
 
-interface SectionProps extends HTMLMotionProps<"section"> {
-  children: React.ReactNode;
+interface SectionProps extends React.HTMLAttributes<HTMLDivElement> {
   title: string;
   id: string;
+  children: React.ReactNode;
 }
 
 export const Section: React.FC<SectionProps> = ({
@@ -16,8 +13,8 @@ export const Section: React.FC<SectionProps> = ({
   ...props
 }) => {
   return (
-    <motion.section id={id} aria-labelledby={`${id}-title`} {...props}>
-      <div>
+    <section id={id} aria-labelledby={`${id}-title`} {...props}>
+      <div className="w-full flex ">
         <h2
           id={`${id}-title`}
           className="font-normal my-6 text-2xl text-slate-700 dark:text-white "
@@ -26,6 +23,6 @@ export const Section: React.FC<SectionProps> = ({
         </h2>
       </div>
       {children}
-    </motion.section>
+    </section>
   );
 };

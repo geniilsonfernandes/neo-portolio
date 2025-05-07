@@ -1,6 +1,9 @@
 import { getPageContent, getProject } from "@/app/actions";
-import { IconArrowNarrowLeft, IconExternalLink } from "@tabler/icons-react";
+import { Title } from "@/components/Title";
+import { IconArrowNarrowLeft } from "@tabler/icons-react";
+import clsx from "clsx";
 import { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 
 export async function generateMetadata({
@@ -34,6 +37,47 @@ export async function generateMetadata({
   };
 }
 
+const ExternalLink = ({
+  url,
+  children,
+}: {
+  url: string;
+  children: React.ReactNode;
+}) => {
+  return (
+    <Link
+      href={url}
+      target="_blank"
+      className="inline-flex text-md items-center gap-2 hover:underline rounded-full group text-slate-600 dark:text-white/80"
+    >
+      {children}
+    </Link>
+  );
+};
+
+const Divider = () => (
+  <div className="w-full h-px bg-gray-200 dark:bg-gray-700" />
+);
+
+const Paragraph = ({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) => {
+  return (
+    <p
+      className={clsx(
+        "font-light text-slate-700 dark:text-white/80",
+        className
+      )}
+    >
+      {children}
+    </p>
+  );
+};
+
 export default async function Page({
   params,
 }: {
@@ -54,17 +98,25 @@ export default async function Page({
       <header className="container mx-auto mt-24">
         <Link
           href="/"
-          className="inline-flex items-center gap-2 rounded-full group text-slate-600"
+          className="inline-flex items-center gap-2 rounded-full group text-slate-700 dark:text-white"
         >
           <IconArrowNarrowLeft className="transform group-hover:-translate-x-1 transition-all duration-300 ease-in-out" />
           <span>Back</span>
         </Link>
-        <div className="space-y-6 my-5">
-          <h1 className="text-4xl font-bold tracking-tight">{data.title}</h1>
-          <p className="text-lg text-gray-600 dark:text-gray-400">
-            {data.short_description}
-          </p>
-          <div className="flex flex-wrap gap-2">
+        <div className="my-5">
+          <Title>{data.title}</Title>
+          <div className="flex gap-2 flex-wrap mt-1">
+            {data.demo && (
+              <ExternalLink url={data.demo}>Link for Project</ExternalLink>
+            )}
+
+            {data.storybook && (
+              <ExternalLink url={data.storybook}>Storybook</ExternalLink>
+            )}
+          </div>
+          <Paragraph className="my-4">{data.description}</Paragraph>
+          <div className="flex flex-wrap gap-2 my-4">
+            <span className="font-semibold dark:text-white">Tech stack:</span>
             {data.technologies?.map((tech, i) => (
               <div
                 key={tech}
@@ -74,89 +126,72 @@ export default async function Page({
               </div>
             ))}
           </div>
-          <div className="flex gap-2 flex-wrap">
-            <a
-              href={data.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-xs font-normal border p-1 px-2 rounded-md hover:bg-gray-100"
-            >
-              GitHub <IconExternalLink size={16} />
-            </a>
-            {data.demo && (
-              <a
-                href={data.demo}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-xs font-normal border p-1 px-2 rounded-md hover:bg-gray-100"
-              >
-                Demo <IconExternalLink size={16} />
-              </a>
-            )}
-            {data.youtube && (
-              <a
-                href={data.youtube}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-xs font-normal border p-1 px-2 rounded-md hover:bg-gray-100"
-              >
-                youtube <IconExternalLink size={16} />
-              </a>
-            )}
-          </div>
         </div>
       </header>
 
-      <main className="container mx-auto ">
+      <main className="container mx-auto mt-20 ">
         {data.youtube && (
-          <iframe
-            width="100%"
-            className="rounded-md overflow-hidden"
-            height="315"
-            src={`https://www.youtube.com/embed/${getYTubeId(
-              data.youtube || ""
-            )}`}
-            title="YouTube video player"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerPolicy="strict-origin-when-cross-origin"
-          ></iframe>
+          <>
+            <Title order={2} className="mb-4">
+              Video Demo
+            </Title>
+            <iframe
+              width="100%"
+              className="rounded-md overflow-hidden"
+              height="515"
+              src={`https://www.youtube.com/embed/${getYTubeId(
+                data.youtube || ""
+              )}`}
+              allowFullScreen
+              title="YouTube video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+            ></iframe>
+          </>
         )}
 
-        <hr className="my-8" />
         {cont.map((item) => {
-          if (item.type === "heading_1") {
+          if (item.type === "heading_1")
             return (
-              <h1 className="text-4xl mb-4 font-bold" key={item.id}>
+              <Title order={2} key={item.id} className="my-8 mt-16">
                 {item.text}
-              </h1>
+              </Title>
             );
-          }
-          if (item.type === "paragraph") {
+          if (item.type === "paragraph")
             return (
-              <p key={item.id} className="text-lg text-slate-600">
+              <Paragraph key={item.id} className="my-4">
                 {item.text
                   ?.replace(/<[^>]+>/g, "")
                   .replace(/&nbsp;/g, " ")
                   .replace(/&lt;/g, "<")
                   .replace(/&gt;/g, ">")}
-              </p>
+              </Paragraph>
             );
-          }
-          if (item.type === "divider") {
-            return <hr key={item.id} className="my-8" />;
-          }
+          if (item.type === "link")
+            return (
+              <ExternalLink key={item.id} url={item.url || ""}>
+                {item.text}
+              </ExternalLink>
+            );
+          if (item.type === "divider") return <Divider key={item.id} />;
           if (item.type === "image") {
             return (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                src={item.url}
-                alt={item.text}
+              <Image
+                src={item.url || "/default-og.png"}
+                alt={item.text || ""}
                 key={item.id}
+                width={1000}
+                height={1000}
                 className="my-4 w-full rounded-md shadow-md"
               />
             );
           }
         })}
+        <Title className="my-8 mt-16">Application source code</Title>
+        <Paragraph className="my-4">
+          Find the code on:{" "}
+          <ExternalLink url={data.github || ""}>GitHub</ExternalLink>
+        </Paragraph>
       </main>
     </>
   );

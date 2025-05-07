@@ -31,7 +31,7 @@ export function normalizeData(data: any) {
 }
 
 export type contentType = {
-  type: "heading_1" | "paragraph" | "divider" | "image";
+  type: "heading_1" | "paragraph" | "divider" | "image" | "link";
   text?: string;
   id?: string;
   url?: string;
@@ -60,12 +60,15 @@ export function normalizePageContent(
 
       if (item.type === "paragraph") {
         if (item.paragraph.rich_text) {
+          console.log(item.paragraph.rich_text);
+
           if (item.paragraph.rich_text.length > 0) {
             if (item.paragraph.rich_text[0].type === "text") {
               return {
                 id: item.id,
-                type: "paragraph",
+                type: item.paragraph.rich_text[0].href ? "link" : "paragraph",
                 text: item.paragraph.rich_text[0].text.content,
+                href: item.paragraph.rich_text[0].href,
               };
             }
           }

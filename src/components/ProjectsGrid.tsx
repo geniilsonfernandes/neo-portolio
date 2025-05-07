@@ -19,6 +19,12 @@ export const ProjectsGrid: React.FC<IProjectsGrid> = ({ data }) => {
           <ProjectCard project={project} />
         </Link>
       ))}
+      <Link
+        href="/projects"
+        className=" text-teal-200 hover:underline col-span-2 font-light"
+      >
+        See all projects
+      </Link>
     </div>
   );
 };

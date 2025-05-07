@@ -1,6 +1,3 @@
-import { jobs } from "@/cms";
-import { GraduationSection } from "@/components/GraduationSection";
-import Job from "@/components/Job";
 import { ProjectsGrid } from "@/components/ProjectsGrid";
 import { Section } from "@/components/Section";
 import { Metadata } from "next";
@@ -14,6 +11,7 @@ import {
   TestingTechnologies,
 } from "@/cms/data";
 import { BadgeGroup } from "@/components/BadgeGroup";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Ge | Desenvolvedor Full Stack",
@@ -52,21 +50,77 @@ export default async function Home() {
       <Header />
 
       <Section
-        className="mt-16 animate-fade-up animate-once animate-delay-300 animate-ease-in-out"
+        className="mt-16 animate-fade-up animate-once animate-delay-[600ms] animate-ease-in-out"
+        title="Blog"
+        id="blog"
+      >
+        <ul className="flex gap-1 flex-col">
+          <a href="/posts/tailwind-motion">
+            <li className="dark:hover:bg-midnight-800 hover:bg-slate-200 p-3 pr-6 -mx-3 rounded-md transition-colors duration-100 flex items-center">
+              <div className="flex-1">
+                <h4 className="text-foreground dark:text-white underline">
+                  Bringing Motion to Tailwind CSS: Building an animation plugin
+                  at Rombo
+                </h4>
+                <p className="text-muted-foreground dark:text-white/50 mt-2">
+                  Creating a plugin for Tailwind CSS that allows designers and
+                  developers to animate elements with minimal effort and maximum
+                  flexibility.
+                </p>
+              </div>
+            </li>
+          </a>
+        </ul>
+      </Section>
+      <Section
+        className="mt-16 animate-fade-up animate-once animate-delay-[500ms] animate-ease-in-out"
         title="Projects"
         id="projects"
         aria-labelledby="projects"
       >
         <ProjectsGrid data={data} />
       </Section>
+      <Section
+        className="mt-16 animate-fade-up animate-once animate-delay-[400ms] animate-ease-in-out"
+        title="Playground lab"
+        id="playground-lab"
+      >
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="w-full h-52 bg-midnight-800 rounded-md overflow-hidden p-1">
+            <div className="w-full h-full bg-midnight-700 rounded-md flex items-center justify-center">
+              ...
+            </div>
+          </div>
+          <div className="w-full h-52 bg-midnight-800 rounded-md overflow-hidden p-1">
+            <div className="w-full h-full bg-midnight-700 rounded-md flex items-center justify-center">
+              ...
+            </div>
+          </div>
+          <div className="w-full h-52 bg-midnight-800 rounded-md overflow-hidden p-1">
+            <div className="w-full h-full bg-midnight-700 rounded-md flex items-center justify-center">
+              ...
+            </div>
+          </div>
+          <div className="w-full h-52 bg-midnight-800 rounded-md overflow-hidden p-1">
+            <div className="w-full h-full bg-midnight-700 rounded-md flex items-center justify-center">
+              ...
+            </div>
+          </div>
+          <Link
+            href="/projects"
+            className=" text-teal-200 hover:underline col-span-2 font-light"
+          >
+            See all
+          </Link>
+        </div>
+      </Section>
+
+      {/* blog */}
 
       <Section
         className="mt-16"
         title="My Technologies and tools"
         id="technologies"
-        initial={{ opacity: 0, x: -40 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.5, ease: "easeInOut", delay: 0.2 }}
       >
         <BadgeGroup
           id="technologies"
@@ -89,14 +143,14 @@ export default async function Home() {
           items={TestingTechnologies}
         />
       </Section>
-      <Section title="Experience" id="experience">
+      {/* <Section title="Experience" id="experience">
         <div className="space-y-2">
           {jobs && jobs.map((job, i) => <Job key={i} {...job} />)}
         </div>
       </Section>
       <Section title="Graduation and Courses" id="graduation-and-courses">
         <GraduationSection />
-      </Section>
+      </Section> */}
     </div>
   );
 }

@@ -142,6 +142,20 @@ const TestingTechnologies = [
 ];
 
 
+const STACK_COLORS = {
+  React: "#61DAFB",
+  Tailwind: "#38B2AC",
+  TypeScript: "#3178C6",
+  Nextjs: "#000000",
+  Golang: "#00ADD8",
+  Nodejs: "#339933",
+  Storybook: "#FF4785",
+  Supabase: "#FFC72C",
+  Kotlin: "#A97BFF",
+  Rust: "#F34B7D",
+};
+
+
 export {
   BackEndTechnologies, FrontEndTechnologies, technologies, TestingTechnologies
 };
