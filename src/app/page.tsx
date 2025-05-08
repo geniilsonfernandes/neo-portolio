@@ -11,6 +11,7 @@ import {
   TestingTechnologies,
 } from "@/cms/data";
 import { BadgeGroup } from "@/components/BadgeGroup";
+import { FloatingPlayer } from "@/components/floating-player";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -55,7 +56,7 @@ export default async function Home() {
         id="blog"
       >
         <ul className="flex gap-1 flex-col">
-          <a href="/posts/tailwind-motion">
+          <Link href="/posts/tailwind-motion">
             <li className="dark:hover:bg-midnight-800 hover:bg-slate-200 p-3 pr-6 -mx-3 rounded-md transition-colors duration-100 flex items-center">
               <div className="flex-1">
                 <h4 className="text-foreground dark:text-white underline">
@@ -69,7 +70,7 @@ export default async function Home() {
                 </p>
               </div>
             </li>
-          </a>
+          </Link>
         </ul>
       </Section>
       <Section
@@ -86,26 +87,19 @@ export default async function Home() {
         id="playground-lab"
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div className="w-full h-52 bg-midnight-800 rounded-md overflow-hidden p-1">
-            <div className="w-full h-full bg-midnight-700 rounded-md flex items-center justify-center">
-              ...
+          <div className="w-full h-60 hover:brightness-110 bg-midnight-800 border border-midnight-700 rounded-2xl flex items-center px-4 justify-center overflow-hidden group/lab relative">
+            <FloatingPlayer />
+            <div className="absolute -bottom-4 left-4 group-hover/lab:bottom-4 transition-bottom duration-300">
+              <Link
+                rel="stylesheet"
+                href={"https://github.com/genilsondev/floating-player"}
+                className="text-xs text-foreground dark:text-white underline"
+              >
+                Grag Floating Player
+              </Link>
             </div>
           </div>
-          <div className="w-full h-52 bg-midnight-800 rounded-md overflow-hidden p-1">
-            <div className="w-full h-full bg-midnight-700 rounded-md flex items-center justify-center">
-              ...
-            </div>
-          </div>
-          <div className="w-full h-52 bg-midnight-800 rounded-md overflow-hidden p-1">
-            <div className="w-full h-full bg-midnight-700 rounded-md flex items-center justify-center">
-              ...
-            </div>
-          </div>
-          <div className="w-full h-52 bg-midnight-800 rounded-md overflow-hidden p-1">
-            <div className="w-full h-full bg-midnight-700 rounded-md flex items-center justify-center">
-              ...
-            </div>
-          </div>
+
           <Link
             href="/projects"
             className=" text-teal-200 hover:underline col-span-2 font-light"

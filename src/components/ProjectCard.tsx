@@ -89,7 +89,7 @@ export const ProjectCard = forwardRef<HTMLDivElement, IProjectCard>(
       <div
         ref={ref}
         className={cn(
-          "p-2 bg-white dark:bg-midnight-900 hover:dark:bg-midnight-800 flex-1 rounded-md relative cursor-pointer hover:scale-[1.01] hover:-translate-y-1 border border-slate-200 dark:border-midnight-800 hover:shadow-lg hover:shadow-midnight-500/10 transition-all duration-200 ease-in-out group/card ",
+          "p-2 bg-white dark:bg-midnight-900 hover:dark:bg-midnight-800 flex-1 rounded-md relative cursor-pointer hover:scale-[1.01] hover:-translate-y-1 border border-slate-200 dark:border-midnight-800 hover:shadow-lg hover:shadow-midnight-500/10 transition-all duration-200 ease-in-out group/card",
           className
         )}
         aria-labelledby={`project-title-${title}`}

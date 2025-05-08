@@ -1,7 +1,7 @@
 import { getPageContent, getProject } from "@/app/actions";
+import { Paragraph } from "@/components/Paragraph";
 import { Title } from "@/components/Title";
 import { IconArrowNarrowLeft } from "@tabler/icons-react";
-import clsx from "clsx";
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -59,25 +59,6 @@ const Divider = () => (
   <div className="w-full h-px bg-gray-200 dark:bg-gray-700" />
 );
 
-const Paragraph = ({
-  children,
-  className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) => {
-  return (
-    <p
-      className={clsx(
-        "font-light text-slate-700 dark:text-white/80",
-        className
-      )}
-    >
-      {children}
-    </p>
-  );
-};
-
 export default async function Page({
   params,
 }: {
@@ -98,6 +79,7 @@ export default async function Page({
       <header className="container mx-auto mt-24">
         <Link
           href="/"
+          scroll={false}
           className="inline-flex items-center gap-2 rounded-full group text-slate-700 dark:text-white"
         >
           <IconArrowNarrowLeft className="transform group-hover:-translate-x-1 transition-all duration-300 ease-in-out" />
