@@ -31,7 +31,7 @@ export const ProjectsGrid: React.FC<Props> = ({ grid = true }) => {
     <div className={clsx("gap-4 group mt-4 grid grid-cols-1 lg:grid-cols-2")}>
       {projects?.map((project, i) => (
         <Link
-          href={`/project/zephyr`}
+          href={`/project/${project.id}`}
           className={`animate-fade-up animate-once animate-ease-in-out animate-delay-${i}00`}
           key={project.id}
         >
