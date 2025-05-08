@@ -9,7 +9,7 @@ interface IProjectsGrid {
 
 export const ProjectsGrid: React.FC<IProjectsGrid> = ({ data }) => {
   return (
-    <div className="gap-4 group mt-4 grid grid-cols-1 sm:grid-cols-2 items-stretch ">
+    <div className="gap-4 group mt-4 grid grid-cols-1 lg:grid-cols-2 ">
       {data?.map((project, i) => (
         <Link
           href={`/project/${project.id}`}
@@ -21,7 +21,7 @@ export const ProjectsGrid: React.FC<IProjectsGrid> = ({ data }) => {
       ))}
       <Link
         href="/projects"
-        className=" text-teal-200 hover:underline col-span-2 font-light"
+        className=" text-teal-200 hover:underline col-span-1 font-light"
       >
         See all projects
       </Link>

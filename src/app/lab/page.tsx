@@ -1,10 +1,9 @@
-import { DragToExpanded } from "@/modules/lab/components/drag-to-expanded";
+import { Increment } from "@/modules/lab/components/incremenent";
 
 export default async function LagPage() {
   return (
-    <div className="py-4 min-h-screen flex justify-center items-end">
-      <DragToExpanded />
-      
+    <div className="py-4 min-h-screen flex justify-center ">
+      <Increment />
     </div>
   );
 }

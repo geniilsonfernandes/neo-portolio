@@ -12,7 +12,9 @@ import {
 } from "@/cms/data";
 import { BadgeGroup } from "@/components/BadgeGroup";
 import { FloatingPlayer } from "@/components/floating-player";
+import { BorderRadius } from "@/modules/lab/components/border-radius";
 import { DragToExpanded } from "@/modules/lab/components/drag-to-expanded";
+import { Increment } from "@/modules/lab/components/incremenent";
 import { IconChevronRight } from "@tabler/icons-react";
 import Link from "next/link";
 
@@ -43,6 +45,26 @@ export const metadata: Metadata = {
     description: "Veja meus projetos e experiências como desenvolvedor.",
     images: ["/default-og.png"],
   },
+};
+
+const LabCard: React.FC<{
+  children: React.ReactNode;
+  title: string;
+}> = ({ children, title }) => {
+  return (
+    <div className="w-full h-60 bg-slate-100 dark:bg-midnight-800 border dark:border-midnight-700 rounded-2xl flex items-center px-4 justify-center overflow-hidden group/lab relative">
+      {children}
+      <div className="absolute -bottom-4 left-4 group-hover/lab:bottom-4 transition-bottom duration-300">
+        <Link
+          rel="stylesheet"
+          href={"https://github.com/genilsondev/floating-player"}
+          className="text-xs text-foreground dark:text-white underline"
+        >
+          {title}
+        </Link>
+      </div>
+    </div>
+  );
 };
 
 const BlogPost: React.FC<{
@@ -103,30 +125,18 @@ export default async function Home() {
         id="playground-lab"
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div className="w-full h-60 bg-slate-100 dark:bg-midnight-800 border dark:border-midnight-700 rounded-2xl flex items-center px-4 justify-center overflow-hidden group/lab relative">
+          <LabCard title="Floating Player">
             <FloatingPlayer />
-            <div className="absolute -bottom-4 left-4 group-hover/lab:bottom-4 transition-bottom duration-300">
-              <Link
-                rel="stylesheet"
-                href={"https://github.com/genilsondev/floating-player"}
-                className="text-xs text-foreground dark:text-white underline"
-              >
-                Grag Floating Player
-              </Link>
-            </div>
-          </div>
-          <div className="w-full h-60 bg-slate-100 dark:bg-midnight-800 border dark:border-midnight-700 rounded-2xl flex items-center px-4 justify-center overflow-hidden group/lab relative">
+          </LabCard>
+          <LabCard title="Drag to expanded">
             <DragToExpanded />
-            <div className="absolute -bottom-4 left-4 group-hover/lab:bottom-4 transition-bottom duration-300">
-              <Link
-                rel="stylesheet"
-                href={"https://github.com/genilsondev/floating-player"}
-                className="text-xs text-foreground dark:text-white underline"
-              >
-                Drag to expanded
-              </Link>
-            </div>
-          </div>
+          </LabCard>
+          <LabCard title="Border Radius">
+            <BorderRadius />
+          </LabCard>
+          <LabCard title="Increment Animation">
+            <Increment />
+          </LabCard>
         </div>
       </Section>
 
