@@ -134,7 +134,7 @@ Mais um componente que pode ser reutilizado é o botão, ele usa animações de 
 
 <Demo>
   <Button>
-    <IconPlayerSkipForwardFilled />
+    <IconPlayerSkipForwardFilled color="red" />
   </Button>
 </Demo>
 
@@ -151,7 +151,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         whileHover={{ scale: 1.2 }}
         whileTap={{ scale: 0.8, backgroundColor: "#FFFFFF80" }}
         className={clsx(
-          "flex items-center justify-center gap-2 p-2 rounded-full text-white",
+          "flex items-center justify-center gap-2 p-2 rounded-full text-red-600",
           className
         )}
         {...props}

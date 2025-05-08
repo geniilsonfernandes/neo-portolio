@@ -56,7 +56,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ),
     a: ({ children, ...props }) => (
       <a
-        className="underline text-[#01FFB3]"
+        className="underline text-[#139348]"
         style={{ color: "#01FFB3" }}
         {...props}
       >
@@ -75,6 +75,11 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ),
     hr: () => <Divider />,
     i: ({ children }) => <i className="italic">{children}</i>,
+    strong: ({ children }) => (
+      <strong className="font-semibold" style={{ color: "#01FFB3" }}>
+        {children}
+      </strong>
+    ),
     ...components,
   };
 }

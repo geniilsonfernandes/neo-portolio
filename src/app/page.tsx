@@ -102,7 +102,7 @@ export default async function Home() {
         id="playground-lab"
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div className="w-full h-60 hover:brightness-110 bg-midnight-800 border border-midnight-700 rounded-2xl flex items-center px-4 justify-center overflow-hidden group/lab relative">
+          <div className="w-full h-60 bg-slate-100 dark:bg-midnight-800 border dark:border-midnight-700 rounded-2xl flex items-center px-4 justify-center overflow-hidden group/lab relative">
             <FloatingPlayer />
             <div className="absolute -bottom-4 left-4 group-hover/lab:bottom-4 transition-bottom duration-300">
               <Link

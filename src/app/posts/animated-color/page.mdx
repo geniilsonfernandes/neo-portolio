@@ -2,6 +2,11 @@
 import { ColorSwitcher } from "@/components/color-switcher";
 import { Demo } from "@/components/demo";
 
+export const metadata = {
+  title: "Animando a Cor de Fundo com Framer Motion",
+  description: "Animando a Cor de Fundo com Framer Motion",
+};
+
 
 # 🎨 Hook useAnimatedBackgroundColor
 
@@ -20,8 +25,8 @@ Esse hook customizado permite animar suavemente a cor de fundo de um elemento us
 
 Internamente, ele usa:
 
-- `useAnimation()` do `framer-motion` para criar um objeto de controle de animações.
-- `useEffect` para iniciar a transição sempre que a cor (`toColor`) muda.
+- **useAnimation()** do **framer-motion** para criar um objeto de controle de animações.
+- **useEffect** para iniciar a transição sempre que a cor **(toColor)** muda.
 
 ## ✅ Exemplo de uso
 
