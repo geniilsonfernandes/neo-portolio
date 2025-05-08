@@ -5,6 +5,7 @@ import Link from "next/link";
 import Logo from "./Logo";
 
 export const Footer = () => {
+
   const { scrollYProgress } = useScroll();
 
   // Mapeia o progresso do scroll (0 a 1) para um deslocamento Y (0 a -100px)

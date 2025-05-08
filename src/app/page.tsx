@@ -12,6 +12,7 @@ import {
 } from "@/cms/data";
 import { BadgeGroup } from "@/components/BadgeGroup";
 import { FloatingPlayer } from "@/components/floating-player";
+import { DragToExpanded } from "@/modules/lab/components/drag-to-expanded";
 import { IconChevronRight } from "@tabler/icons-react";
 import Link from "next/link";
 
@@ -114,13 +115,18 @@ export default async function Home() {
               </Link>
             </div>
           </div>
-
-          <Link
-            href="/projects"
-            className=" text-teal-200 hover:underline col-span-2 font-light"
-          >
-            See all
-          </Link>
+          <div className="w-full h-60 bg-slate-100 dark:bg-midnight-800 border dark:border-midnight-700 rounded-2xl flex items-center px-4 justify-center overflow-hidden group/lab relative">
+            <DragToExpanded />
+            <div className="absolute -bottom-4 left-4 group-hover/lab:bottom-4 transition-bottom duration-300">
+              <Link
+                rel="stylesheet"
+                href={"https://github.com/genilsondev/floating-player"}
+                className="text-xs text-foreground dark:text-white underline"
+              >
+                Drag to expanded
+              </Link>
+            </div>
+          </div>
         </div>
       </Section>
 
