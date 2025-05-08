@@ -2,7 +2,6 @@ import { ProjectsGrid } from "@/components/ProjectsGrid";
 import { Section } from "@/components/Section";
 import { Metadata } from "next";
 import { Header } from "../components/Header";
-import { getProjects } from "./actions";
 
 import {
   BackEndTechnologies,
@@ -14,7 +13,7 @@ import { BadgeGroup } from "@/components/BadgeGroup";
 import { FloatingPlayer } from "@/components/floating-player";
 import { BorderRadius } from "@/modules/lab/components/border-radius";
 import { DragToExpanded } from "@/modules/lab/components/drag-to-expanded";
-import { Increment } from "@/modules/lab/components/incremenent";
+import { Increment } from "@/modules/lab/components/Increment";
 import { IconChevronRight } from "@tabler/icons-react";
 import Link from "next/link";
 
@@ -85,8 +84,6 @@ const BlogPost: React.FC<{
 };
 
 export default async function Home() {
-  const data = await getProjects();
-
   return (
     <div className="container mx-auto">
       <Header />
@@ -117,7 +114,7 @@ export default async function Home() {
         id="projects"
         aria-labelledby="projects"
       >
-        <ProjectsGrid data={data} />
+        <ProjectsGrid />
       </Section>
       <Section
         className="mt-16 animate-fade-up animate-once animate-delay-[400ms] animate-ease-in-out"

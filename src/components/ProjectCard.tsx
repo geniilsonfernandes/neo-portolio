@@ -1,9 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
-import { likeProject } from "@/app/actions";
 import { cn } from "@/utils";
 import { IconExternalLink } from "@tabler/icons-react";
 import Image from "next/image";
-import { forwardRef, useState } from "react";
+import { forwardRef } from "react";
 
 export interface IProject {
   id: string;
@@ -22,7 +21,12 @@ export interface IProject {
 }
 
 interface IProjectCard extends React.HTMLAttributes<HTMLDivElement> {
-  project: IProject;
+  project: {
+    id: string;
+    title?: string;
+    short_description?: string;
+    cover?: string;
+  };
 }
 
 interface ExternalIconButtonProps
@@ -71,20 +75,9 @@ const ProjectCardDescription = ({
 
 export const ProjectCard = forwardRef<HTMLDivElement, IProjectCard>(
   (
-    {
-      className,
-      project: { id, title, short_description, likes, cover, sub_cover },
-      ...props
-    },
+    { className, project: { id, title, short_description, cover }, ...props },
     ref
   ) => {
-    const [likesCount, setLikesCount] = useState(likes || 0);
-
-    const handleLike = async (likesCount: number) => {
-      const newLikes = await likeProject(id, likesCount);
-      setLikesCount(newLikes);
-    };
-
     return (
       <div
         ref={ref}

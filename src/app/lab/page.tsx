@@ -1,9 +1,9 @@
-import { Increment } from "@/modules/lab/components/incremenent";
+import { ChipGrid } from "@/modules/lab/components/pill";
 
 export default async function LagPage() {
   return (
-    <div className="py-4 min-h-screen flex justify-center ">
-      <Increment />
+    <div className="py-4 flex justify-center  ">
+      <ChipGrid />
     </div>
   );
 }
