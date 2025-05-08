@@ -2,11 +2,11 @@
 
 import { useAnimatedBackgroundColor } from "@/hooks/useAnimatedBackgroundColor";
 import {
-    IconHeart,
-    IconHeartFilled,
-    IconPlayerPauseFilled,
-    IconPlayerPlayFilled,
-    IconPlayerSkipForwardFilled,
+  IconHeart,
+  IconHeartFilled,
+  IconPlayerPauseFilled,
+  IconPlayerPlayFilled,
+  IconPlayerSkipForwardFilled,
 } from "@tabler/icons-react";
 import clsx from "clsx";
 import { AnimatePresence, motion, MotionProps } from "framer-motion";
@@ -64,6 +64,29 @@ const musics = [
   },
 ];
 
+type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & MotionProps;
+
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ children, className, ...props }, ref) => {
+    return (
+      <motion.button
+        ref={ref}
+        whileHover={{ scale: 1.2 }}
+        whileTap={{ scale: 0.8, backgroundColor: "#FFFFFF80" }}
+        className={clsx(
+          "flex items-center justify-center gap-2 p-2 rounded-full text-white",
+          className
+        )}
+        {...props}
+      >
+        {children}
+      </motion.button>
+    );
+  }
+);
+
+Button.displayName = "Button";
+
 interface MusicProps {
   title: string;
   artist: string;
@@ -84,29 +107,6 @@ export const Music: React.FC<MusicProps> = ({ title, artist }) => {
     </motion.div>
   );
 };
-
-type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & MotionProps;
-
-export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ children, className, ...props }, ref) => {
-    return (
-      <motion.button
-        ref={ref}
-        whileHover={{ scale: 1.2 }}
-        whileTap={{ scale: 0.8, backgroundColor: "#FFFFFF" }}
-        className={clsx(
-          "flex items-center justify-center gap-2 p-2 rounded-full text-white",
-          className
-        )}
-        {...props}
-      >
-        {children}
-      </motion.button>
-    );
-  }
-);
-
-Button.displayName = "Button";
 
 export const FloatingPlayer = () => {
   const [data, setData] = useState(musics);
@@ -133,8 +133,6 @@ export const FloatingPlayer = () => {
     }
     setIndex(Math.min(musics.length - 1, index + 1));
   };
-
-  console.log(data[index].isFavorite);
 
   return (
     <motion.div

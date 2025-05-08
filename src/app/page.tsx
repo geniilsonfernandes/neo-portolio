@@ -12,6 +12,7 @@ import {
 } from "@/cms/data";
 import { BadgeGroup } from "@/components/BadgeGroup";
 import { FloatingPlayer } from "@/components/floating-player";
+import { IconChevronRight } from "@tabler/icons-react";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -43,6 +44,23 @@ export const metadata: Metadata = {
   },
 };
 
+const BlogPost: React.FC<{
+  title: string;
+  description: string;
+}> = ({ description, title }) => {
+  return (
+    <li className="dark:hover:bg-midnight-800 hover:bg-slate-200 p-3 pr-6 -mx-3 rounded-md transition-colors duration-100 flex items-center">
+      <div className="flex-1 dark:text-white">
+        <h4 className="text-foreground dark:text-white underline">{title}</h4>
+        <p className="text-muted-foreground dark:text-white/50 mt-2">
+          {description}
+        </p>
+      </div>
+      <IconChevronRight className="dark:text-white/50" />
+    </li>
+  );
+};
+
 export default async function Home() {
   const data = await getProjects();
 
@@ -56,20 +74,17 @@ export default async function Home() {
         id="blog"
       >
         <ul className="flex gap-1 flex-col">
-          <Link href="/posts/tailwind-motion">
-            <li className="dark:hover:bg-midnight-800 hover:bg-slate-200 p-3 pr-6 -mx-3 rounded-md transition-colors duration-100 flex items-center">
-              <div className="flex-1">
-                <h4 className="text-foreground dark:text-white underline">
-                  Bringing Motion to Tailwind CSS: Building an animation plugin
-                  at Rombo
-                </h4>
-                <p className="text-muted-foreground dark:text-white/50 mt-2">
-                  Creating a plugin for Tailwind CSS that allows designers and
-                  developers to animate elements with minimal effort and maximum
-                  flexibility.
-                </p>
-              </div>
-            </li>
+          <Link href="/posts/floating-player">
+            <BlogPost
+              title="Motion and Tailwind CSS: Building a grab player animation"
+              description="Creating a floating player with tailwind and framer motion"
+            />
+          </Link>
+          <Link href="/posts/animated-color">
+            <BlogPost
+              title="Hook useAnimatedBackgroundColor"
+              description="Animação suave de cores de fundo com Framer Motion"
+            />
           </Link>
         </ul>
       </Section>

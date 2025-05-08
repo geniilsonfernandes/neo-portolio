@@ -1,0 +1,166 @@
+import { FloatingPlayer, Button } from "@/components/floating-player";
+import { IconPlayerSkipForwardFilled } from "@tabler/icons-react";
+import { Demo } from "@/components/demo";
+
+export const metadata = {
+  title: "Reproduzindo Música com um Floating Player no Next.js",
+  description: "Reproduzindo Música com um Floating Player no Next.js",
+};
+
+# Criando um Mini Player de Música com Animações
+
+#### Demonstração
+
+<Demo>
+  <FloatingPlayer />
+</Demo>
+
+#### Inspiração
+
+O Floating Player foi inspirado no player do app Deezer [Floating Player](https://play.google.com/store/apps/details?id=deezer.android.app&hl=pt_BR).
+
+## Mudancas
+
+No componente original, ele não tem esse efeito de drag, adicionei para ter um pouco mais de interatividade, e mudanca na animação de entrada/saída das musicas para ficar mais natural.
+
+#### Como funciona
+
+Vamos dividir o componente em duas partes principais:
+
+1. O componente **Music** que exibe o nome da música e o artista.
+2. O componente **FloatingPlayer**, que gerencia o estado e renderiza a interface.
+
+## 1. Componente Music
+
+Este componente recebe o título e o artista, e utiliza animações de entrada/saída com Framer Motion:
+
+```tsx
+interface MusicProps {
+  title: string;
+  artist: string;
+}
+
+export const Music: React.FC<MusicProps> = ({ title, artist }) => {
+  return (
+    <motion.div
+      key={title}
+      initial={{ opacity: 0, x: -10 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: 10 }}
+      transition={{ duration: 0.3 }}
+      className="flex flex-col flex-1 text-white mx-4"
+    >
+      <h3 className="font-bold truncate">{title}</h3>
+      <p className="opacity-70 text-sm truncate">{artist}</p>
+    </motion.div>
+  );
+};
+```
+
+⸻
+
+## 2. Componente FloatingPlayer
+
+Este é o componente principal que encapsula:
+
+1. Controle de reprodução (play/pause)
+2. Avançar música
+3. Favoritar/desfavoritar
+4. Drag com efeito de retorno ao soltar (dragSnapToOrigin)
+5. Animações com Framer Motion
+
+```tsx
+export const FloatingPlayer = () => {
+  const [data, setData] = useState(musics);
+  const [play, setPlay] = useState(false);
+  const [index, setIndex] = useState(0);
+  const controls = useAnimatedBackgroundColor(data[index].color);
+
+  const togglePlay = () => setPlay(!play);
+
+  const toggleFavorite = (index: number) => {
+    setData((prevData) =>
+      prevData.map((music, i) =>
+        i === index ? { ...music, isFavorite: !music.isFavorite } : music
+      )
+    );
+  };
+
+  const nextMusic = () => {
+    setIndex((prevIndex) =>
+      prevIndex === musics.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  return (
+    <motion.div
+      drag
+      dragSnapToOrigin
+      animate={controls}
+      dragConstraints={{ left: -2, right: 2, top: 0, bottom: 0 }}
+      whileDrag={{ scale: 0.9 }}
+      className={clsx(
+        "flex items-center p-2 rounded-2xl max-w-96 w-full hover:brightness-110",
+        "cursor-pointer active:cursor-grabbing"
+      )}
+    >
+      <Button onClick={togglePlay}>
+        {play ? <IconPlayerPauseFilled /> : <IconPlayerPlayFilled />}
+      </Button>
+
+      <AnimatePresence mode="wait">
+        <Music
+          key={data[index].title}
+          title={data[index].title}
+          artist={data[index].artist}
+        />
+      </AnimatePresence>
+
+      <Button onClick={() => toggleFavorite(index)}>
+        {data[index].isFavorite ? <IconHeartFilled /> : <IconHeart />}
+      </Button>
+
+      <Button onClick={nextMusic}>
+        <IconPlayerSkipForwardFilled />
+      </Button>
+    </motion.div>
+  );
+};
+```
+
+## Buttoes
+
+Mais um componente que pode ser reutilizado é o botão, ele usa animações de tap e hover com Framer Motion.
+
+<Demo>
+  <Button>
+    <IconPlayerSkipForwardFilled />
+  </Button>
+</Demo>
+
+## implementação do Button
+
+```tsx
+type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & MotionProps;
+
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ children, className, ...props }, ref) => {
+    return (
+      <motion.button
+        ref={ref}
+        whileHover={{ scale: 1.2 }}
+        whileTap={{ scale: 0.8, backgroundColor: "#FFFFFF80" }}
+        className={clsx(
+          "flex items-center justify-center gap-2 p-2 rounded-full text-white",
+          className
+        )}
+        {...props}
+      >
+        {children}
+      </motion.button>
+    );
+  }
+);
+
+Button.displayName = "Button";
+```

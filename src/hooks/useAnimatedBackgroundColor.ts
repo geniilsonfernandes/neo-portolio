@@ -9,7 +9,7 @@ export function useAnimatedBackgroundColor(toColor: string, duration = 0.5) {
       backgroundColor: toColor,
       transition: { duration, ease: "easeInOut" },
     });
-  }, [toColor]);
+  }, [toColor, duration, controls]);
 
   return controls;
 }

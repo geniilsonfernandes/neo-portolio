@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
-import { getLocale, getMessages } from "next-intl/server";
 import { Inria_Sans } from "next/font/google";
 import "./globals.css";
 
 import { Footer } from "@/components/Footer";
-import { NextIntlClientProvider } from "next-intl";
 
 const inria = Inria_Sans({
   subsets: ["latin"],
@@ -29,16 +27,18 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const locale = await getLocale();
-  const messages = await getMessages();
+  // const locale = await getLocale();
+  // const messages = await getMessages();
 
   return (
-    <html lang={locale}>
+    <html lang="en">
       <body className={`${inria.className} bg-gray-50 dark:bg-midnight-900 `}>
-        <NextIntlClientProvider messages={messages}>
+        {/* <NextIntlClientProvider messages={messages}> */}
+        <div className=" bg-gray-50 dark:bg-midnight-900 z-50 pb-20">
           {children}
-          <Footer />
-        </NextIntlClientProvider>
+        </div>
+        <Footer />
+        {/* </NextIntlClientProvider> */}
       </body>
     </html>
   );
