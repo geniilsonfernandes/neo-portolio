@@ -13,7 +13,7 @@ export const Header = () => {
   return (
     <section className="mt-16">
       <Image
-        src="/cover.png"
+        src="https://res.cloudinary.com/dbpayojb3/image/upload/v1747953334/WhatsApp_Image_2025-05-22_at_11.17.24_AM_cwbrqd.jpg"
         alt="Ge Fernandes profile image"
         className="rounded-xl border-2 shadow-lg border-white object-cover animate-fade-up animate-once animate-delay-100 animate-ease-in-out"
         width={64}
