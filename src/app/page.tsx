@@ -10,8 +10,6 @@ import {
   TestingTechnologies,
 } from "@/cms/data";
 import { BadgeGroup } from "@/components/BadgeGroup";
-import { BlogPosts } from "@/modules/blog/components/blog-posts";
-import { Labs } from "@/modules/lab/pages/labs";
 
 export const metadata: Metadata = {
   title: "Ge | Desenvolvedor Full Stack",
@@ -47,7 +45,6 @@ export default async function Home() {
     <div className="container mx-auto">
       <Header />
 
-      <BlogPosts />
       <Section
         className="mt-16 animate-fade-up animate-once animate-delay-[500ms] animate-ease-in-out"
         title="Projects"
@@ -56,10 +53,6 @@ export default async function Home() {
       >
         <ProjectsGrid />
       </Section>
-      <Labs />
-
-      {/* blog */}
-
       <Section
         className="mt-16"
         title="My Technologies and tools"
@@ -86,14 +79,7 @@ export default async function Home() {
           items={TestingTechnologies}
         />
       </Section>
-      {/* <Section title="Experience" id="experience">
-        <div className="space-y-2">
-          {jobs && jobs.map((job, i) => <Job key={i} {...job} />)}
-        </div>
-      </Section>
-      <Section title="Graduation and Courses" id="graduation-and-courses">
-        <GraduationSection />
-      </Section> */}
+
     </div>
   );
 }

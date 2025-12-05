@@ -19,7 +19,7 @@ export const ProjectsGrid: React.FC<Props> = ({ grid = true }) => {
       status: "In Progress",
     },
     {
-      id: "Proposa",
+      id: "proposa",
       title: "Proposa",
       short_description:
         "Close deals up to 70% faster. by creating, sending, and tracking professional proposals.",

@@ -17,7 +17,7 @@ export const Badge: React.FC<IBadgeProps> = ({
   ...props
 }) => {
   const baseStyles =
-    "inline-flex items-center gap-1 px-3 py-1 text-sm rounded-full transition-colors";
+    "inline-flex items-center gap-1 px-3 py-1 text-sm transition-colors";
   const variants = {
     default:
       "bg-gray-100 text-gray-700 dark:bg-midnight-800 dark:text-white/60 border border-gray-200 dark:border-midnight-700",

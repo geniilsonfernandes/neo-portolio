@@ -98,7 +98,7 @@ const ProjectCardDescription = ({
       </h3>
       <p
         id={`project-description-${title}`}
-        className="text-md font-light text-slate-500 dark:text-white/50 mt-2"
+        className="text-sm font-light text-slate-500 dark:text-white/50 mt-2"
       >
         {short_description}
       </p>
