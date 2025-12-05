@@ -9,7 +9,7 @@ export const Breadcrumb = () => {
 
 
   return (
-    <nav className="text-sm text-gray-600 dark:text-midnight-300">
+    <nav className="text-sm text-midnight-100">
       <ul className="flex items-center gap-1">
         <li>
           <Link href="/" className="hover:underline">

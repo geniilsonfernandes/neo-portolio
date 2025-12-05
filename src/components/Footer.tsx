@@ -9,7 +9,7 @@ export const Footer = () => {
   const { scrollYProgress } = useScroll();
 
   // Mapeia o progresso do scroll (0 a 1) para um deslocamento Y (0 a -100px)
-  const translateY = useTransform(scrollYProgress, [0, 1], [500, -100]);
+  const translateY = useTransform(scrollYProgress, [0, 1], [300, -100]);
 
   return (
     <motion.footer

@@ -8,8 +8,8 @@ type Props = {
 
 export const Technologies: React.FC<Props> = ({ technologies }) => {
   return (
-    <div className="flex flex-wrap gap-2 py-8">
-      <span className="font-semibold dark:text-white">Tech stack:</span>
+    <div className="flex flex-wrap gap-2 py-4 pb-8">
+      <span className="font-semibold dark:text-white ">Tech stack:</span>
       {technologies?.map((tech, i) => (
         <div key={tech} className="bg-gray-100 px-3 py-1 text-sm">
           {tech}
