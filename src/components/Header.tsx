@@ -24,7 +24,7 @@ export const Header = () => {
         id="header-info"
         className="text-4xl text-slate-900 dark:text-white font-bold leading-9 my-4 animate-fade-up animate-once animate-delay-200 animate-ease-in-out"
       >
-        Hello, I'm Ge, Frontend Developer and Product Creator
+        Hello, I&apos;m Ge, Frontend Developer and Product Creator
       </h1>
 
       {/* COPY ATUALIZADA */}

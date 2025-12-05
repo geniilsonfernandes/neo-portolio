@@ -14,10 +14,10 @@ export default function ContactPage() {
       </Link>
 
       <h1 className="text-4xl font-bold text-white mb-4">
-        Let's work together
+        Let&apos;s work together
       </h1>
       <p className="text-lg text-midnight-300 mb-8">
-        Have a project in mind? Fill out the form below and I'll get back to you as soon as possible.
+        Have a project in mind? Fill out the form below and I&apos;ll get back to you as soon as possible.
       </p>
 
       <ContactForm />
