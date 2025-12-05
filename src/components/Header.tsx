@@ -24,19 +24,47 @@ export const Header = () => {
         id="header-info"
         className="text-4xl text-slate-900 dark:text-white font-bold leading-9 my-4 animate-fade-up animate-once animate-delay-200 animate-ease-in-out"
       >
-        Ge | Full Stack Developer
+        Hello, I'm Ge, Frontend Developer and Product Creator
       </h1>
 
+      {/* COPY ATUALIZADA */}
       <p className="text-md font-light text-slate-500 dark:text-white/70 leading-6 tracking-wider animate-fade-up animate-once animate-delay-300 animate-ease-in-out">
-        Frontend Developer with a background in design, passionate about turning
-        ideas into memorable digital experiences. I strive to combine aesthetics
-        and functionality to craft interfaces that both delight and deliver.
+        Uniting design and engineering, I build end-to-end digital products as an
+        independent creator. From concept to implementation, I craft intuitive,
+        fast, and well-structured interfaces for the web.
       </p>
 
       <p className="text-md mt-4 font-light text-slate-500 dark:text-white/70 leading-6 tracking-wider animate-fade-up animate-once animate-delay-[400ms] animate-ease-in-out">
-        With a focus on responsive design and accessibility, I ensure that every
-        project I work on is both user-friendly and scalable.
+        As a solo developer, I focus on performance, accessibility, and a
+        consistent user experience, delivering complete solutions that are both
+        scalable and impactful.
       </p>
+
+
+      <div className="mt-6 animate-fade-up animate-once animate-delay-[500ms] animate-ease-in-out flex gap-4">
+
+        <a
+          href="https://cal.com/genilson-fernandes-ryjfqe/30min" // Replace with your actual booking link
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 px-3 py-1.5 bg-sky-50 dark:bg-sky-950/30 text-sky-700 dark:text-sky-400 text-xs font-semibold border border-sky-200 dark:border-sky-900 transition-colors hover:bg-sky-100 dark:hover:bg-sky-950/50"
+        >
+          Book a call
+        </a>
+
+
+        <a
+          href="mailto:genilsonfernandes.dev@gmail.com"
+          className="inline-flex items-center gap-2 px-3 py-1.5  bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-400 text-xs font-semibold border border-emerald-200 dark:border-emerald-900 transition-colors hover:bg-emerald-100 dark:hover:bg-emerald-950/50"
+        >
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full  bg-emerald-400 opacity-75"></span>
+            <span className="relative inline-flex  h-2 w-2 bg-emerald-500"></span>
+          </span>
+          Available for new projects
+        </a>
+      </div>
+
       <motion.nav
         aria-label="Social media links"
         className="flex flex-1 gap-4 mt-6 animate-fade-up animate-once animate-delay-500 animate-ease-in-out"
@@ -71,6 +99,8 @@ export const Header = () => {
           <IconCode strokeWidth={1.5} />
         </a>
       </motion.nav>
+
+
     </section>
   );
 };
