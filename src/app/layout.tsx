@@ -10,6 +10,7 @@ const inria = Inria_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://genilsondev.vercel.app"),
   title: "Ola! Sou Genilson Fernandes",
   description:
     "Software Enginner Front-end | React js | React Native | NextJs | TypeScript | GraphQL | Nest | NodeJs",

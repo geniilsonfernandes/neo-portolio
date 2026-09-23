@@ -1,4 +1,4 @@
-import clsx from "clsx";
+import { cn } from "@/utils";
 import React from "react";
 
 interface IBadgeProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -30,7 +30,7 @@ export const Badge: React.FC<IBadgeProps> = ({
     <div
       role={clickable ? "button" : "status"}
       tabIndex={clickable ? 0 : undefined}
-      className={clsx(
+      className={cn(
         baseStyles,
         variants[variant],
         clickable && "cursor-pointer hover:brightness-110",

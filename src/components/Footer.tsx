@@ -39,10 +39,10 @@ export const Footer = () => {
           <p className="text-lg mt-8">
             <strong className="block sr-only">Email</strong>
             <a
-              href={`mailto:geniilsonfernandes@gmail.com`}
+              href={`mailto:gefernandes.dev@gmail.com`}
               className="hover:underline"
             >
-              geniilsonfernandes@gmail.com
+              gefernandes.dev@gmail.com
             </a>
           </p>
 
@@ -55,7 +55,7 @@ export const Footer = () => {
         </address>
 
         {/* Copyright */}
-        <div className="text-slate-300 font-light text-center py-4 text-sm">
+        <div className="text-slate-500 dark:text-midnight-50 font-light text-center py-4 text-sm">
           <p>
             &copy; {new Date().getFullYear()} Genilson Fernandes. All rights
             reserved.

@@ -1,3 +1,4 @@
+import { cn } from "@/utils";
 import React from "react";
 
 interface SectionProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -10,10 +11,16 @@ export const Section: React.FC<SectionProps> = ({
   children,
   title,
   id,
+  className,
   ...props
 }) => {
   return (
-    <section id={id} aria-labelledby={`${id}-title`} {...props}>
+    <section
+      id={id}
+      aria-labelledby={`${id}-title`}
+      className={cn("scroll-mt-12", className)}
+      {...props}
+    >
       <div className="w-full flex ">
         <h2
           id={`${id}-title`}

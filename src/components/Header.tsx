@@ -11,7 +11,7 @@ import { motion } from "framer-motion";
 
 export const Header = () => {
   return (
-    <section className="mt-16">
+    <section id="about" className="pt-16 scroll-mt-12">
       <Image
         src="https://res.cloudinary.com/dbpayojb3/image/upload/v1747953334/WhatsApp_Image_2025-05-22_at_11.17.24_AM_cwbrqd.jpg"
         alt="Ge Fernandes profile image"
@@ -24,20 +24,18 @@ export const Header = () => {
         id="header-info"
         className="text-4xl text-slate-900 dark:text-white font-bold leading-9 my-4 animate-fade-up animate-once animate-delay-200 animate-ease-in-out"
       >
-        Hello, I&apos;m Ge, Frontend Developer and Product Creator
+        Hi, I&apos;m Ge, Full Stack Developer
       </h1>
 
-      {/* COPY ATUALIZADA */}
       <p className="text-md font-light text-slate-500 dark:text-white/70 leading-6 tracking-wider animate-fade-up animate-once animate-delay-300 animate-ease-in-out">
-        Uniting design and engineering, I build end-to-end digital products as an
-        independent creator. From concept to implementation, I craft intuitive,
-        fast, and well-structured interfaces for the web.
+        I build end-to-end web products with TypeScript, from scalable Node.js
+        and NestJS back ends to fast, well-structured React interfaces.
       </p>
 
       <p className="text-md mt-4 font-light text-slate-500 dark:text-white/70 leading-6 tracking-wider animate-fade-up animate-once animate-delay-[400ms] animate-ease-in-out">
-        As a solo developer, I focus on performance, accessibility, and a
-        consistent user experience, delivering complete solutions that are both
-        scalable and impactful.
+        Over the past four years I&apos;ve worked on microservices, design
+        systems, analytics dashboards and logistics platforms, always focused
+        on clean architecture, performance and a consistent user experience.
       </p>
 
 
@@ -54,14 +52,14 @@ export const Header = () => {
 
 
         <a
-          href="mailto:genilsonfernandes.dev@gmail.com"
+          href="#experience"
           className="inline-flex items-center gap-2 px-3 py-1.5  bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-400 text-xs font-semibold border border-emerald-200 dark:border-emerald-900 transition-colors hover:bg-emerald-100 dark:hover:bg-emerald-950/50"
         >
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full  bg-emerald-400 opacity-75"></span>
             <span className="relative inline-flex  h-2 w-2 bg-emerald-500"></span>
           </span>
-          Available for new projects
+          Currently @ Synergia – UFMG
         </a>
       </div>
 

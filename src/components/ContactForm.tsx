@@ -12,12 +12,12 @@ const InputLabel = (props: React.LabelHTMLAttributes<HTMLLabelElement>) => <labe
 />
 
 const InputForm = (props: React.InputHTMLAttributes<HTMLInputElement>) => <input
-  className="w-full px-4 py-3 border border-midnight-200 bg-midnight-900 text-white placeholder:text-midnight-500 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-all duration-200"
+  className="w-full px-4 py-3 border border-slate-200 dark:border-midnight-200 bg-white dark:bg-midnight-900 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-midnight-500 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-all duration-200"
   {...props}
 />
 
 const InputTextArea = (props: React.TextareaHTMLAttributes<HTMLTextAreaElement>) => <textarea
-  className="w-full px-4 py-3 border border-midnight-200 bg-midnight-900 text-white placeholder:text-midnight-500 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-all duration-200"
+  className="w-full px-4 py-3 border border-slate-200 dark:border-midnight-200 bg-white dark:bg-midnight-900 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-midnight-500 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-all duration-200"
   {...props}
 />
 
@@ -49,7 +49,7 @@ export const ContactForm = () => {
     if (formData.isWebApp) projectDetails.push("Web App");
     const detailsText = projectDetails.length > 0 ? `%0D%0AProject Details: ${projectDetails.join(", ")}` : "";
     const body = `Name: ${formData.name}%0D%0AEmail: ${formData.email}%0D%0AProject Type: ${formData.projectType}${detailsText}%0D%0A%0D%0ADescription:%0D%0A${formData.description}`;
-    window.location.href = `mailto:genilsonfernandes.dev@gmail.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:gefernandes.dev@gmail.com?subject=${subject}&body=${body}`;
   };
 
   const handleChange = (
@@ -133,8 +133,8 @@ export const ContactForm = () => {
               className={cn(
                 "relative flex flex-col items-center justify-center p-4 border cursor-pointer",
                 "h-28 text-center",
-                "border-midnight-200",
-                "bg-midnight-900",
+                "border-slate-200 dark:border-midnight-200",
+                "bg-white dark:bg-midnight-900",
                 "hover:border-teal-500",
                 "transition-colors duration-200",
                 formData.projectType === type

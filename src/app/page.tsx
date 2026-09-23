@@ -1,85 +1,67 @@
-import { ProjectsGrid } from "@/components/ProjectsGrid";
+import { ExperienceList } from "@/components/ExperienceList";
 import { Section } from "@/components/Section";
 import { Metadata } from "next";
 import { Header } from "../components/Header";
+import { NavBar } from "@/components/NavBar";
 
-import {
-  BackEndTechnologies,
-  FrontEndTechnologies,
-  technologies,
-  TestingTechnologies,
-} from "@/cms/data";
-import { BadgeGroup } from "@/components/BadgeGroup";
+import { HeroBackground } from "@/components/HeroBackground";
+import { Highlights } from "@/components/Highlights";
+import { StackGrid } from "@/components/StackGrid";
 
 export const metadata: Metadata = {
-  title: "Ge | Desenvolvedor Full Stack",
+  title: "Ge | Full Stack Developer",
   description:
-    "Portfólio pessoal com projetos, experiências profissionais e tecnologias que utilizo no desenvolvimento web e mobile.",
+    "Personal portfolio featuring my professional experience and the technologies I use for web and mobile development.",
   openGraph: {
-    title: "Ge | Desenvolvedor Full Stack",
+    title: "Ge | Full Stack Developer",
     description:
-      "Conheça meus projetos, stack de tecnologias e experiências profissionais.",
+      "Explore my professional experience and technology stack.",
     url: "https://genilsondev.vercel.app/",
-    siteName: "Ge | Desenvolvedor Full Stack",
+    siteName: "Ge | Full Stack Developer",
     images: [
       {
         url: "/default-og.png",
         width: 1200,
         height: 630,
-        alt: "Imagem de capa do portfólio",
+        alt: "Portfolio cover image",
       },
     ],
-    locale: "pt_BR",
+    locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ge | Desenvolvedor Full Stack",
-    description: "Veja meus projetos e experiências como desenvolvedor.",
+    title: "Ge | Full Stack Developer",
+    description: "See my experience as a developer.",
     images: ["/default-og.png"],
   },
 };
 
 export default async function Home() {
   return (
-    <div className="container mx-auto">
-      <Header />
+    <div className="relative isolate">
+      <HeroBackground />
+      <NavBar />
+      <div className="container mx-auto">
+        <Header />
+        <Highlights />
 
-      <Section
-        className="mt-16 animate-fade-up animate-once animate-delay-[500ms] animate-ease-in-out"
-        title="Projects"
-        id="projects"
-        aria-labelledby="projects"
-      >
-        <ProjectsGrid />
-      </Section>
-      <Section
-        className="mt-16"
-        title="My Technologies and tools"
-        id="technologies"
-      >
-        <BadgeGroup
+        <Section
+          className="mt-16 animate-fade-up animate-once animate-delay-[500ms] animate-ease-in-out"
+          title="Experience"
+          id="experience"
+        >
+          <ExperienceList />
+        </Section>
+        <Section
+          className="mt-16"
+          title="Stack"
           id="technologies"
-          title="Technologies Used"
-          items={technologies}
-        />
-        <BadgeGroup
-          id="front-end-technologies"
-          title="Front-end Technologies"
-          items={FrontEndTechnologies}
-        />
-        <BadgeGroup
-          id="back-end-technologies"
-          title="Back-end Technologies"
-          items={BackEndTechnologies}
-        />
-        <BadgeGroup
-          id="testing-technologies"
-          title="Testing Technologies"
-          items={TestingTechnologies}
-        />
-      </Section>
+        >
+          <StackGrid />
+        </Section>
 
+      </div>
     </div>
   );
 }
